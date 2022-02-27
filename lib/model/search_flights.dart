@@ -1,3 +1,5 @@
+import 'package:swastik_air_hub/model/tickets.dart';
+
 class SearchFLightAPIResponse {
   String? code;
   String? message;
@@ -34,7 +36,7 @@ class SearchFlightModel {
   String? sectorCode;
   String? companyName;
   String? status;
-  List<Tickets>? tickets;
+  List<Ticket>? tickets;
 
   SearchFlightModel(
       {this.flightCode,
@@ -53,9 +55,9 @@ class SearchFlightModel {
     companyName = json['companyName'];
     status = json['status'];
     if (json['tickets'] != null) {
-      tickets = <Tickets>[];
+      tickets = <Ticket>[];
       json['tickets'].forEach((v) {
-        tickets!.add(new Tickets.fromJson(v));
+        tickets!.add(new Ticket.fromJson(v));
       });
     }
   }
@@ -71,31 +73,6 @@ class SearchFlightModel {
     if (this.tickets != null) {
       data['tickets'] = this.tickets!.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class Tickets {
-  int? id;
-  String? ticketCode;
-  int? price;
-  String? status;
-
-  Tickets({this.id, this.ticketCode, this.price, this.status});
-
-  Tickets.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    ticketCode = json['ticketCode'];
-    price = json['price'];
-    status = json['status'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['ticketCode'] = this.ticketCode;
-    data['price'] = this.price;
-    data['status'] = this.status;
     return data;
   }
 }
