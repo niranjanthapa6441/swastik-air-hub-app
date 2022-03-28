@@ -18,6 +18,7 @@ class _HomePageBodyState extends State<HomePageBody> {
           children: [
             GestureDetector(
               onTap: () {
+                //Get.toNamed(RouteHelper.bookingDetails);
                 Get.toNamed(RouteHelper.bookingDetails);
               },
               child: Container(

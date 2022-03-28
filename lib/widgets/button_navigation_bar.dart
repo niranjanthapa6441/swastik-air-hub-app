@@ -57,6 +57,7 @@ class _ButtomNavigationBarState extends State<CustomButtomNavigationBar> {
       unselectedLabelStyle:
           const TextStyle(fontSize: 15, color: Color.fromARGB(218, 39, 41, 39)),
       unselectedItemColor: const Color.fromARGB(218, 39, 41, 39),
+      showUnselectedLabels: false,
       selectedLabelStyle: const TextStyle(
         fontSize: 16,
       ),

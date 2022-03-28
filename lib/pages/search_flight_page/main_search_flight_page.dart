@@ -26,7 +26,6 @@ class _SeacrhFlightPageState extends State<SeacrhFlightPage> {
         backgroundColor: Color.fromARGB(169, 46, 38, 196),
       ),
       body: SearchBody(),
-      bottomNavigationBar: CustomButtomNavigationBar(),
     );
   }
 }

@@ -42,4 +42,12 @@ class Dimensions {
 
   //image
   static double popularFoodImgSize = screenHeight / 2.26;
+
+  //borderRdaius
+  static double radius10 = screenHeight / 86.6;
+  static double radius15 = screenHeight / 57.73;
+  static double radius30 = screenHeight / 28.86;
+  static double radius5 = screenHeight / 173.2;
+  static double radius20 = screenHeight / 43.3;
+  static double radius25 = screenHeight / 34.64;
 }

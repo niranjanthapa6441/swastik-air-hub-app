@@ -19,7 +19,6 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Color.fromARGB(169, 46, 38, 196),
       ),
       body: ProfilePageBody(),
-      bottomNavigationBar: CustomButtomNavigationBar(),
     );
   }
 }

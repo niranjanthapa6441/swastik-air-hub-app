@@ -4,4 +4,6 @@ class AppConstants {
   static const String API_VERSION = "api/v1/";
   static const String CUSTOMER_URI = API_VERSION + "customer";
   static const String RECOMMENDED_PRODUCT_URI = "";
+  static const String CUSTOMER_BOOKING_DETAIL_URI =
+      API_VERSION + "booking/customer/CUSTOMER1";
 }
