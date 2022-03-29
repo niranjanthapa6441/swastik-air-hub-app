@@ -8,6 +8,8 @@ import 'package:swastik_air_hub/pages/profilepage/main_profile_page.dart';
 import 'package:swastik_air_hub/pages/search_flight_page/main_search_flight_page.dart';
 import 'package:swastik_air_hub/pages/show_available_flights_and_tickets.dart/show_available_flights_and_tickets_page.dart';
 import 'package:swastik_air_hub/pages/show_payment_method/show_payment_method_page.dart';
+import 'package:swastik_air_hub/pages/sign_in_page/sign_in.dart';
+import 'package:swastik_air_hub/pages/sign_up_page/sign_up.dart';
 import 'package:swastik_air_hub/pages/trip_summary/trip_summary_page.dart';
 import 'package:swastik_air_hub/pages/view_booking_detail/main_booking_detail.dart';
 
@@ -16,6 +18,9 @@ import '../pages/Registration/main_registration_page.dart';
 
 class RouteHelper {
   static const String initial = '/';
+  static const String signIn = '/signIn';
+  static const String signUp = '/signUp';
+  static const String homepage = '/homepage';
   static const String searchFlight = '/searchFlight';
   static const String bookingDetails = '/bookingDetails';
   static const String viewProfile = '/viewProfile';
@@ -31,6 +36,9 @@ class RouteHelper {
       '/availableFlightsAndTickets';
 
   static String getInitial() => '$initial';
+  static String getSignIn() => '$signIn';
+  static String getSignUp() => '$signUp';
+  static String getHomepage() => '$homepage';
   static String getSearchFlight() => '$searchFlight';
   static String getBookingDetails() => '$bookingDetails';
   static String getViewProfile() => '$viewProfile';
@@ -46,7 +54,8 @@ class RouteHelper {
       '$availableFlightsAndTickets';
 
   static List<GetPage> routes = [
-    GetPage(name: initial, page: () => Homepage()),
+    GetPage(name: homepage, page: () => Homepage()),
+    GetPage(name: signIn, page: () => SignInPage()),
     GetPage(name: searchFlight, page: () => SeacrhFlightPage()),
     GetPage(name: bookingDetails, page: () => Bookings()),
     GetPage(name: viewProfile, page: () => ProfilePage()),
@@ -63,5 +72,6 @@ class RouteHelper {
         name: availablePaymentMethods,
         page: () => ShowAvailablePaymentMethods()),
     GetPage(name: tripSummary, page: () => TripSummaryPage()),
+    GetPage(name: signUp, page: () => SignUpPage()),
   ];
 }
