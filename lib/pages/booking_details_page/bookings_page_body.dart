@@ -39,7 +39,7 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
               margin: EdgeInsets.only(
                 top: Dimensions.width20,
               ),
-              height: 730,
+              height: 680,
               child: popularProducts.isLoaded
                   ? ListView.builder(
                       physics: AlwaysScrollableScrollPhysics(),
@@ -49,9 +49,9 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
                           : popularProducts.customerBookingDetails.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          // onTap: () {
-                          //   Get.toNamed(RouteHelper.recommendedFood);
-                          // },
+                          onTap: () {
+                            Get.toNamed(RouteHelper.getViewBookingDetail());
+                          },
                           child: _buildCustomerBookingDetailItemPage(index,
                               popularProducts.customerBookingDetails[index]),
                         );

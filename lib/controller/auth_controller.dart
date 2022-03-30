@@ -3,6 +3,7 @@ import 'package:swastik_air_hub/model/LoginBody.dart';
 import 'package:swastik_air_hub/model/SIgnUp.dart';
 import 'package:swastik_air_hub/model/booking.dart';
 import 'package:swastik_air_hub/model/customer.dart';
+import 'package:swastik_air_hub/model/error_response.dart';
 import 'package:swastik_air_hub/model/loginResponse.dart';
 import 'package:swastik_air_hub/model/response_model.dart';
 import 'package:swastik_air_hub/repositories/auth_repository.dart';
@@ -16,6 +17,7 @@ class AuthController extends GetxController implements GetxService {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   late LogInResponseModel details;
+  late ErrorResponse errorDetails;
   Future<ResponseModel> registration(SignUpBody signUpBody) async {
     _isLoading = true;
     Response response = await authRepo.registration(signUpBody);
@@ -45,7 +47,6 @@ class AuthController extends GetxController implements GetxService {
       responseModel = ResponseModel(true, response.body["message"]);
       authRepo.saveUserToken(details.data!.accessToken.toString());
     } else {
-      details = LogInResponseModel.fromJson(response.body);
       responseModel = ResponseModel(false, response.body["message"]);
     }
     update();

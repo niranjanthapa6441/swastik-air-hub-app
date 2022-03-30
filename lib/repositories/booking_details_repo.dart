@@ -9,6 +9,7 @@ class CustomerBookingDetailRepo extends GetxService {
   CustomerBookingDetailRepo({required this.apiClient});
 
   Future<Response> getCustomerBookingDetails() async {
+    print(apiClient.mainHeaders);
     return await apiClient.get(AppConstants.CUSTOMER_BOOKING_DETAIL_URI);
   }
 }

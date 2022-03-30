@@ -9,5 +9,5 @@ class AppConstants {
   static const String SIGN_UP_URI = API_VERSION + "customer/register";
   static const String SIGN_IN_URI = API_VERSION + "customer/login";
   static const String TOKEN = "hgv";
-  static const String USER_ID = "asdf";
+  static const String USER_ID = "";
 }

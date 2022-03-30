@@ -18,7 +18,7 @@ class _BookingDetailsState extends State<Bookings> {
       appBar: AppBar(
         leading: GestureDetector(
           onTap: () {
-            Get.toNamed(RouteHelper.initial);
+            Get.toNamed(RouteHelper.navigation);
           },
           child: Icon(
             Icons.arrow_back_outlined,

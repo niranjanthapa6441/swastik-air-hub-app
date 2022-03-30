@@ -148,17 +148,19 @@ class _SignInPageBodyState extends State<SignInPageBody> {
       showCustomSnackBar("Username is Empty", title: "Username");
     } else if (password.isEmpty) {
       showCustomSnackBar("Password is Empty", title: "Password");
+    } else {
+      LoginBody userCredentials =
+          LoginBody(username: username, password: password);
+      var authController = Get.find<AuthController>();
+      authController.login(userCredentials).then((status) {
+        print(status.isSucces);
+        if (status.isSucces) {
+          Get.toNamed(RouteHelper.getNavigation());
+        } else {
+          showCustomSnackBar("Username/password don't match",
+              title: "Invalied Login details");
+        }
+      });
     }
-    LoginBody userCredentials =
-        LoginBody(username: username, password: password);
-    var authController = Get.find<AuthController>();
-    authController.login(userCredentials).then((status) {
-      print(status.isSucces);
-      if (status.isSucces) {
-        Get.toNamed(RouteHelper.getNavigation());
-      } else {
-        showCustomSnackBar(status.message, title: "Login");
-      }
-    });
   }
 }

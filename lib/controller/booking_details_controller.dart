@@ -26,10 +26,8 @@ class CustomerBookingDetailController extends GetxController {
           CustomerBookingDetailResponse.fromJson(response.body)
               .customerBookingDetails);
       update();
-    } else if (response.statusCode == 500) {
-      print("dfsdfsdfsd");
     } else {
-      print("tero bau ko tauko");
+      print(response.body["message"]);
     }
   }
 }

@@ -16,15 +16,9 @@ class _HomePageBodyState extends State<HomePageBody> {
       child: Container(
         child: Row(
           children: [
-            GestureDetector(
-              onTap: () {
-                //Get.toNamed(RouteHelper.bookingDetails);
-                Get.toNamed(RouteHelper.bookingDetails);
-              },
-              child: Container(
-                margin: EdgeInsets.all(25),
-                child: Text("Click to view Booking Details"),
-              ),
+            Container(
+              margin: EdgeInsets.all(25),
+              child: Text("Home Page"),
             ),
           ],
         ),
