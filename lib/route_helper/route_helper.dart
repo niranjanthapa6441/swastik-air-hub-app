@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:swastik_air_hub/pages/booking_details_page/main_bookings_page.dart';
 import 'package:swastik_air_hub/pages/detail_confirmation/detail_confirmation_page.dart';
 import 'package:swastik_air_hub/pages/homepage/main_home_page.dart';
+import 'package:swastik_air_hub/pages/homepage/navigation.dart';
 import 'package:swastik_air_hub/pages/menu/main_menu_page.dart';
 import 'package:swastik_air_hub/pages/notification/main_notification_page.dart';
 import 'package:swastik_air_hub/pages/profilepage/main_profile_page.dart';
@@ -19,6 +20,7 @@ import '../pages/Registration/main_registration_page.dart';
 class RouteHelper {
   static const String initial = '/';
   static const String signIn = '/signIn';
+  static const String navigation = '/navigation';
   static const String signUp = '/signUp';
   static const String homepage = '/homepage';
   static const String searchFlight = '/searchFlight';
@@ -36,6 +38,7 @@ class RouteHelper {
       '/availableFlightsAndTickets';
 
   static String getInitial() => '$initial';
+  static String getNavigation() => '$navigation';
   static String getSignIn() => '$signIn';
   static String getSignUp() => '$signUp';
   static String getHomepage() => '$homepage';
@@ -56,6 +59,7 @@ class RouteHelper {
   static List<GetPage> routes = [
     GetPage(name: homepage, page: () => Homepage()),
     GetPage(name: signIn, page: () => SignInPage()),
+    GetPage(name: navigation, page: () => Navigation()),
     GetPage(name: searchFlight, page: () => SeacrhFlightPage()),
     GetPage(name: bookingDetails, page: () => Bookings()),
     GetPage(name: viewProfile, page: () => ProfilePage()),

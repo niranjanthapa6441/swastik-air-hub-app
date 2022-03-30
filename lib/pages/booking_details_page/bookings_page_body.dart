@@ -30,9 +30,9 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
     print("current screen height" +
         MediaQuery.of(context).size.height.toString());
     print("width" + MediaQuery.of(context).size.width.toString());
+    Get.find<CustomerBookingDetailController>().getPopularProductList();
     return Column(
       children: [
-        //list of food and images
         GetBuilder<CustomerBookingDetailController>(
           builder: (popularProducts) {
             return Container(

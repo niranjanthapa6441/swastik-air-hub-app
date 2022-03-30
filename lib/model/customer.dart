@@ -1,3 +1,28 @@
+import 'package:swastik_air_hub/model/booking.dart';
+
+class AuthResponse {
+  String? _code;
+  String? _message;
+  late List<Customer> _data;
+  List<Customer> get customerRegistrationDetails => _data;
+
+  AuthResponse({required code, required message, required data}) {
+    _code = code;
+    _message = message;
+    _data = data;
+  }
+  AuthResponse.fromJson(Map<String, dynamic> json) {
+    _code = json['code'];
+    _message = json['message'];
+    if (json['data'] != null) {
+      _data = <Customer>[];
+      json['data'].forEach((v) {
+        _data.add(Customer.fromJson(v));
+      });
+    }
+  }
+}
+
 class Customer {
   String? id;
   String? firstName;
@@ -6,9 +31,6 @@ class Customer {
   String? email;
   String? username;
   String? phoneNumber;
-  String? password;
-  String? status;
-
   Customer(
       {this.id,
       this.firstName,
@@ -16,9 +38,7 @@ class Customer {
       this.middleName,
       this.email,
       this.username,
-      this.phoneNumber,
-      this.password,
-      this.status});
+      this.phoneNumber});
 
   Customer.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -28,8 +48,6 @@ class Customer {
     email = json['email'];
     username = json['username'];
     phoneNumber = json['phoneNumber'];
-    password = json['password'];
-    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
@@ -41,8 +59,6 @@ class Customer {
     data['email'] = this.email;
     data['username'] = this.username;
     data['phoneNumber'] = this.phoneNumber;
-    data['password'] = this.password;
-    data['status'] = this.status;
     return data;
   }
 }

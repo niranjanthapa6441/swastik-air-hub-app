@@ -1,0 +1,54 @@
+import 'package:get/get.dart';
+import 'package:swastik_air_hub/model/LoginBody.dart';
+import 'package:swastik_air_hub/model/SIgnUp.dart';
+import 'package:swastik_air_hub/model/booking.dart';
+import 'package:swastik_air_hub/model/customer.dart';
+import 'package:swastik_air_hub/model/loginResponse.dart';
+import 'package:swastik_air_hub/model/response_model.dart';
+import 'package:swastik_air_hub/repositories/auth_repository.dart';
+
+class AuthController extends GetxController implements GetxService {
+  final AuthRepo authRepo;
+
+  AuthController({required this.authRepo});
+  List<dynamic> _customerRegistrationDetails = [];
+  List<dynamic> get customerRegistrationDetails => _customerRegistrationDetails;
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  late LogInResponseModel details;
+  Future<ResponseModel> registration(SignUpBody signUpBody) async {
+    _isLoading = true;
+    Response response = await authRepo.registration(signUpBody);
+    late ResponseModel responseModel;
+    if (response.statusCode == 200) {
+      responseModel = ResponseModel(true, response.body["message"]);
+      print("sdfads");
+      // _customerRegistrationDetails = [];
+      // AuthResponse details = AuthResponse.fromJson(response.body);
+      // _customerRegistrationDetails.addAll(
+      //     AuthResponse.fromJson(response.body).customerRegistrationDetails);
+      print(_customerRegistrationDetails);
+    } else {
+      print(response.body);
+      responseModel = ResponseModel(false, response.body["message"]);
+    }
+    update();
+    return responseModel;
+  }
+
+  Future<ResponseModel> login(LoginBody loginBody) async {
+    _isLoading = true;
+    Response response = await authRepo.login(loginBody);
+    late ResponseModel responseModel;
+    if (response.statusCode == 200) {
+      details = LogInResponseModel.fromJson(response.body);
+      responseModel = ResponseModel(true, response.body["message"]);
+      authRepo.saveUserToken(details.data!.accessToken.toString());
+    } else {
+      details = LogInResponseModel.fromJson(response.body);
+      responseModel = ResponseModel(false, response.body["message"]);
+    }
+    update();
+    return responseModel;
+  }
+}

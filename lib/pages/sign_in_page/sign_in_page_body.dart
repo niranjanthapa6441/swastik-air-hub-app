@@ -1,11 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:swastik_air_hub/base/show_custom_snack_bar.dart';
+import 'package:swastik_air_hub/model/LoginBody.dart';
 import 'package:swastik_air_hub/route_helper/route_helper.dart';
 import 'package:swastik_air_hub/utils/Color/colors.dart';
 import 'package:swastik_air_hub/utils/dimesions/dimesions.dart';
 import 'package:swastik_air_hub/widgets/app_text_field.dart';
 import 'package:swastik_air_hub/widgets/big_text.dart';
+
+import '../../controller/auth_controller.dart';
 
 class SignInPageBody extends StatefulWidget {
   const SignInPageBody({Key? key}) : super(key: key);
@@ -73,27 +77,32 @@ class _SignInPageBodyState extends State<SignInPageBody> {
           SizedBox(
             height: Dimensions.height30,
           ),
-          Container(
-            margin: EdgeInsets.only(
-              left: Dimensions.width30 +
-                  Dimensions.width30 +
-                  Dimensions.width30 +
-                  Dimensions.width30,
-              right: Dimensions.width30 +
-                  Dimensions.width30 +
-                  Dimensions.width30 +
-                  Dimensions.width30,
-            ),
-            height: Dimensions.screenHeight / 13,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimensions.radius30),
-              color: AppColors.purpleColor,
-            ),
-            child: Center(
-              child: BigText(
-                text: "Sign In",
-                size: Dimensions.font30,
-                color: Colors.white,
+          GestureDetector(
+            onTap: () {
+              _loginValidation();
+            },
+            child: Container(
+              margin: EdgeInsets.only(
+                left: Dimensions.width30 +
+                    Dimensions.width30 +
+                    Dimensions.width30 +
+                    Dimensions.width30,
+                right: Dimensions.width30 +
+                    Dimensions.width30 +
+                    Dimensions.width30 +
+                    Dimensions.width30,
+              ),
+              height: Dimensions.screenHeight / 13,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius30),
+                color: AppColors.purpleColor,
+              ),
+              child: Center(
+                child: BigText(
+                  text: "Sign In",
+                  size: Dimensions.font30,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -117,7 +126,7 @@ class _SignInPageBodyState extends State<SignInPageBody> {
                         TextSpan(
                           text: "Create",
                           style: TextStyle(
-                            color: Colors.black54,
+                            color: AppColors.purpleColor,
                             fontSize: Dimensions.font20 * 1.25,
                             fontWeight: FontWeight.bold,
                           ),
@@ -130,5 +139,26 @@ class _SignInPageBodyState extends State<SignInPageBody> {
         ],
       ),
     );
+  }
+
+  void _loginValidation() {
+    String username = usernameController.text.trim();
+    String password = passwordController.text.trim();
+    if (username.isEmpty) {
+      showCustomSnackBar("Username is Empty", title: "Username");
+    } else if (password.isEmpty) {
+      showCustomSnackBar("Password is Empty", title: "Password");
+    }
+    LoginBody userCredentials =
+        LoginBody(username: username, password: password);
+    var authController = Get.find<AuthController>();
+    authController.login(userCredentials).then((status) {
+      print(status.isSucces);
+      if (status.isSucces) {
+        Get.toNamed(RouteHelper.getNavigation());
+      } else {
+        showCustomSnackBar(status.message, title: "Login");
+      }
+    });
   }
 }

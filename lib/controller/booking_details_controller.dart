@@ -16,7 +16,6 @@ class CustomerBookingDetailController extends GetxController {
     Response response = await detailRepo.getCustomerBookingDetails();
     print(response.statusCode);
     print(response.statusText);
-
     if (response.statusCode == 200) {
       print("products");
       _isLoaded = true;
@@ -29,6 +28,8 @@ class CustomerBookingDetailController extends GetxController {
       update();
     } else if (response.statusCode == 500) {
       print("dfsdfsdfsd");
+    } else {
+      print("tero bau ko tauko");
     }
   }
 }
