@@ -5,9 +5,15 @@ class AppConstants {
   static const String CUSTOMER_URI = API_VERSION + "customer";
   static const String RECOMMENDED_PRODUCT_URI = "";
   static const String CUSTOMER_BOOKING_DETAIL_URI =
-      API_VERSION + "booking/customer/CUSTOMER1";
+      API_VERSION + "booking/customer/";
   static const String SIGN_UP_URI = API_VERSION + "customer/register";
   static const String SIGN_IN_URI = API_VERSION + "customer/login";
   static const String TOKEN = "hgv";
-  static const String USER_ID = "";
+  static String USER_ID = "";
+  static String FROM = "";
+  static String To = "";
+  static const String SEARCH_AVAILABLE_FLIGHT_URI =
+      API_VERSION + "flight/searchFlights";
+
+  static String FLIGHT_DATE = "";
 }

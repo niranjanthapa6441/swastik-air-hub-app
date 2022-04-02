@@ -23,13 +23,9 @@ class ApiClient extends GetConnect implements GetxService {
     };
   }
 
-  Future<Response> getData(
-    String uri,
-  ) async {
+  Future<Response> getData(String uri, Map<String, String> mainHeaders) async {
     try {
-      print("I am here");
-      print(_mainHeaders.toString() + "hgcghchc");
-      Response response = await get(uri, headers: _mainHeaders);
+      Response response = await get(uri, headers: mainHeaders);
       return response;
     } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());
@@ -38,8 +34,21 @@ class ApiClient extends GetConnect implements GetxService {
 
   Future<Response> postData(String uri, dynamic body) async {
     try {
-      print("haader token    " + token);
+      print("haader token" + token);
       Response response = await post(uri, body, headers: _mainHeaders);
+      return response;
+    } catch (e) {
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
+  Future<Response> patchData(String uri, dynamic body) async {
+    try {
+      print("haader token" + token);
+      Response response = await delete(
+        uri,
+        headers: _mainHeaders,
+      );
       return response;
     } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());

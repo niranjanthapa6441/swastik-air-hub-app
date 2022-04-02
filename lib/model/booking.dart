@@ -2,6 +2,7 @@ class CustomerBookingDetailResponse {
   String? _code;
   String? _message;
   late List<Booking> _data;
+
   List<Booking> get customerBookingDetails => _data;
 
   CustomerBookingDetailResponse(

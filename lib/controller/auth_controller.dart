@@ -1,12 +1,11 @@
 import 'package:get/get.dart';
 import 'package:swastik_air_hub/model/LoginBody.dart';
 import 'package:swastik_air_hub/model/SIgnUp.dart';
-import 'package:swastik_air_hub/model/booking.dart';
-import 'package:swastik_air_hub/model/customer.dart';
 import 'package:swastik_air_hub/model/error_response.dart';
 import 'package:swastik_air_hub/model/loginResponse.dart';
 import 'package:swastik_air_hub/model/response_model.dart';
 import 'package:swastik_air_hub/repositories/auth_repository.dart';
+import 'package:swastik_air_hub/utils/app_constants/app_constants.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
@@ -46,10 +45,20 @@ class AuthController extends GetxController implements GetxService {
       details = LogInResponseModel.fromJson(response.body);
       responseModel = ResponseModel(true, response.body["message"]);
       authRepo.saveUserToken(details.data!.accessToken.toString());
+      AppConstants.USER_ID = details.data!.customerId.toString();
     } else {
       responseModel = ResponseModel(false, response.body["message"]);
     }
     update();
     return responseModel;
   }
+  //toDO
+  // Future<Void> save async(LoginBody body) {
+  //   try{
+
+  //   }
+  //   catch(e){
+
+  //   }
+  // }
 }

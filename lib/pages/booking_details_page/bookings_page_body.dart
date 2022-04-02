@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:swastik_air_hub/controller/booking_details_controller.dart';
 import 'package:swastik_air_hub/model/booking.dart';
-import 'package:swastik_air_hub/model/search_flights.dart';
+import 'package:swastik_air_hub/model/search_flight_response.dart';
 import 'package:swastik_air_hub/pages/view_booking_detail/main_booking_detail.dart';
 import 'package:swastik_air_hub/route_helper/route_helper.dart';
 
@@ -40,26 +40,26 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
                 top: Dimensions.width20,
               ),
               height: 680,
-              child: popularProducts.isLoaded
-                  ? ListView.builder(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: popularProducts.customerBookingDetails.isEmpty
-                          ? 0
-                          : popularProducts.customerBookingDetails.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Get.toNamed(RouteHelper.getViewBookingDetail());
-                          },
-                          child: _buildCustomerBookingDetailItemPage(index,
-                              popularProducts.customerBookingDetails[index]),
-                        );
-                      },
-                    )
-                  : CircularProgressIndicator(
-                      color: AppColors.mainColor,
-                    ),
+              child: ListView.builder(
+                physics: AlwaysScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: popularProducts.customerBookingDetails.isEmpty
+                    ? 0
+                    : popularProducts.customerBookingDetails.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getViewBookingDetail());
+                    },
+                    child: popularProducts.isLoaded
+                        ? _buildCustomerBookingDetailItemPage(index,
+                            popularProducts.customerBookingDetails[index])
+                        : CircularProgressIndicator(
+                            color: AppColors.purpleColor,
+                          ),
+                  );
+                },
+              ),
             );
           },
         ),

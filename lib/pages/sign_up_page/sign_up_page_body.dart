@@ -70,16 +70,20 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
               height: Dimensions.height20,
             ),
             AppTextField(
-                textEditingController: passwordController,
-                hintText: "Password",
-                icon: Icons.password),
+              textEditingController: passwordController,
+              hintText: "Password",
+              icon: Icons.password,
+              isObscure: true,
+            ),
             SizedBox(
               height: Dimensions.height20,
             ),
             AppTextField(
-                textEditingController: confirmPasswordController,
-                hintText: "Confirm Password",
-                icon: Icons.password),
+              textEditingController: confirmPasswordController,
+              hintText: "Confirm Password",
+              icon: Icons.password,
+              isObscure: true,
+            ),
             SizedBox(
               height: Dimensions.height20,
             ),
@@ -214,11 +218,8 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
           showCustomSnackBar(
               "Registration Successful! Please Verify Your Email Before logging In",
               title: "Registration");
-        }
-        else {
-          showCustomSnackBar(
-              status.message,
-              title: "Registration");
+        } else {
+          showCustomSnackBar(status.message, title: "Registration");
         }
       });
     }

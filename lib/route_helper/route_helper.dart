@@ -16,6 +16,7 @@ import 'package:swastik_air_hub/pages/view_booking_detail/main_booking_detail.da
 
 import '../pages/Login/main_login_page.dart';
 import '../pages/Registration/main_registration_page.dart';
+import '../pages/flight_ticket_detail_page/flight_ticket_detail_page.dart';
 
 class RouteHelper {
   static const String initial = '/';
@@ -37,6 +38,7 @@ class RouteHelper {
   static const String availableFlightsAndTickets =
       '/availableFlightsAndTickets';
 
+  static const String viewFlightTicketDetail = '/flightticketdetail';
   static String getInitial() => '$initial';
   static String getNavigation() => '$navigation';
   static String getSignIn() => '$signIn';
@@ -55,10 +57,15 @@ class RouteHelper {
   static String getConfrimDetail() => '$confirmDetail';
   static String getAvailableFlightsAndTickets() =>
       '$availableFlightsAndTickets';
+  static String getFlightTicketDetail() => '$viewFlightTicketDetail';
 
   static List<GetPage> routes = [
     GetPage(name: homepage, page: () => Homepage()),
-    GetPage(name: signIn, page: () => SignInPage()),
+    GetPage(
+      name: signIn,
+      page: () => SignInPage(),
+      popGesture: true,
+    ),
     GetPage(name: navigation, page: () => Navigation()),
     GetPage(name: searchFlight, page: () => SeacrhFlightPage()),
     GetPage(name: bookingDetails, page: () => Bookings()),
@@ -70,12 +77,19 @@ class RouteHelper {
     GetPage(name: bookingDetail, page: () => BookingDetail()),
     GetPage(
         name: availableFlightsAndTickets,
-        page: () => ShowAvailableFlightsAndTickets()),
-    GetPage(name: confirmDetail, page: () => DetailConfirmationPage()),
+        page: () {
+          return ShowAvailableFlightsAndTickets();
+        },
+        popGesture: true),
+    GetPage(
+        name: confirmDetail,
+        page: () => DetailConfirmationPage(),
+        popGesture: true),
     GetPage(
         name: availablePaymentMethods,
         page: () => ShowAvailablePaymentMethods()),
     GetPage(name: tripSummary, page: () => TripSummaryPage()),
-    GetPage(name: signUp, page: () => SignUpPage()),
+    GetPage(name: signUp, page: () => SignUpPage(), popGesture: true),
+    GetPage(name: viewFlightTicketDetail, page: () => FlightTicketDetailPage()),
   ];
 }

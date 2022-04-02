@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:swastik_air_hub/model/booking.dart';
-import 'package:swastik_air_hub/model/booking_details.dart';
 import 'package:swastik_air_hub/repositories/booking_details_repo.dart';
 
 class CustomerBookingDetailController extends GetxController {
@@ -15,7 +14,6 @@ class CustomerBookingDetailController extends GetxController {
   Future<void> getPopularProductList() async {
     Response response = await detailRepo.getCustomerBookingDetails();
     print(response.statusCode);
-    print(response.statusText);
     if (response.statusCode == 200) {
       print("products");
       _isLoaded = true;
