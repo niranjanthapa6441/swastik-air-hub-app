@@ -4,14 +4,10 @@ import 'package:get/get.dart';
 import '../../route_helper/route_helper.dart';
 import 'flight_ticket_detail_page_body.dart';
 
-class FlightTicketDetailPage extends StatefulWidget {
-  const FlightTicketDetailPage({Key? key}) : super(key: key);
+class FlightTIcketDetailPage extends StatelessWidget {
+  int pageId;
+  FlightTIcketDetailPage({required this.pageId, key}) : super(key: key);
 
-  @override
-  State<FlightTicketDetailPage> createState() => _FlightTicketDetailPageState();
-}
-
-class _FlightTicketDetailPageState extends State<FlightTicketDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +24,9 @@ class _FlightTicketDetailPageState extends State<FlightTicketDetailPage> {
         title: const Text('Flight Detail'),
         backgroundColor: Color.fromARGB(169, 46, 38, 196),
       ),
-      body: FlightTicketDetailPageBody(),
+      body: FlightTicketDetailPageBody(
+        pageId: pageId,
+      ),
     );
   }
 }

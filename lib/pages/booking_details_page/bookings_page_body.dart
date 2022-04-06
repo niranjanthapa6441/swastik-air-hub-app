@@ -39,7 +39,7 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
               margin: EdgeInsets.only(
                 top: Dimensions.width20,
               ),
-              height: 680,
+              height: Dimensions.height10 * 68,
               child: ListView.builder(
                 physics: AlwaysScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -47,17 +47,12 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
                     ? 0
                     : popularProducts.customerBookingDetails.length,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getViewBookingDetail());
-                    },
-                    child: popularProducts.isLoaded
-                        ? _buildCustomerBookingDetailItemPage(index,
-                            popularProducts.customerBookingDetails[index])
-                        : CircularProgressIndicator(
-                            color: AppColors.purpleColor,
-                          ),
-                  );
+                  return popularProducts.isLoaded
+                      ? _buildCustomerBookingDetailItemPage(
+                          index, popularProducts.customerBookingDetails[index])
+                      : CircularProgressIndicator(
+                          color: AppColors.purpleColor,
+                        );
                 },
               ),
             );
@@ -74,9 +69,10 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
           right: Dimensions.width20,
           bottom: Dimensions.height10),
       decoration: BoxDecoration(
-        border: Border.all(color: Color.fromARGB(169, 46, 38, 196)),
         borderRadius: BorderRadius.circular(Dimensions.radius20),
+        color: Color.fromARGB(220, 234, 235, 233),
       ),
+      height: Dimensions.width10 * 22,
       child: Row(
         children: [
           //imageContainer
@@ -90,7 +86,7 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
                 top: Dimensions.height10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Color.fromARGB(169, 46, 38, 196),
+              color: Color.fromARGB(169, 113, 103, 250),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -114,50 +110,48 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
           Expanded(
             child: Container(
               width: 230,
-              height: 150,
-              margin: EdgeInsets.only(
-                  right: Dimensions.width5, top: Dimensions.height10),
+              height: Dimensions.width10 * 18,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BigText(
                     text: "Booking Id: " + booking.id.toString(),
-                    color: Color.fromARGB(169, 46, 38, 196),
+                    color: AppColors.mainBlackColor,
                     size: 18,
                   ),
                   SizedBox(
-                    height: Dimensions.height5,
+                    height: Dimensions.height15,
                   ),
                   BigText(
                     text: "Sector: " +
                         booking.flightTicket!.detail!.sector!.sectorCode
                             .toString(),
-                    color: Color.fromARGB(169, 46, 38, 196),
+                    color: AppColors.mainBlackColor,
                     size: 18,
                   ),
                   SizedBox(
-                    height: Dimensions.height5,
+                    height: Dimensions.height15,
                   ),
                   BigText(
                     text: "Departure Time: " +
                         booking.flightTicket!.detail!.departureTime.toString(),
-                    color: Color.fromARGB(169, 46, 38, 196),
+                    color: AppColors.mainBlackColor,
                     size: 18,
                   ),
                   SizedBox(
-                    height: Dimensions.height5,
+                    height: Dimensions.height15,
                   ),
                   BigText(
                     text: "Status: " + booking.status.toString(),
-                    color: Color.fromARGB(169, 46, 38, 196),
+                    color: AppColors.mainBlackColor,
                     size: 18,
                   ),
                   SizedBox(
-                    height: Dimensions.height10,
+                    height: Dimensions.height20 * 0.92,
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getViewBookingDetail());
+                      Get.toNamed(RouteHelper.getViewBookingDetail(index));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -177,7 +171,7 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

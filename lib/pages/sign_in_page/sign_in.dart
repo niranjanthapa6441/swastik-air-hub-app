@@ -10,9 +10,12 @@ class SignInPage extends StatefulWidget {
 
 class _SignInState extends State<SignInPage> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SignInPageBody(),
-    );
-  }
+  Widget build(BuildContext context) => WillPopScope(
+        child: Scaffold(
+          body: SignInPageBody(),
+        ),
+        onWillPop: () async {
+          return false;
+        },
+      );
 }

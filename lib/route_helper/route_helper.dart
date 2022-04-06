@@ -6,6 +6,7 @@ import 'package:swastik_air_hub/pages/homepage/navigation.dart';
 import 'package:swastik_air_hub/pages/menu/main_menu_page.dart';
 import 'package:swastik_air_hub/pages/notification/main_notification_page.dart';
 import 'package:swastik_air_hub/pages/profilepage/main_profile_page.dart';
+import 'package:swastik_air_hub/pages/profilepage/updateProfilePage.dart';
 import 'package:swastik_air_hub/pages/search_flight_page/main_search_flight_page.dart';
 import 'package:swastik_air_hub/pages/show_available_flights_and_tickets.dart/show_available_flights_and_tickets_page.dart';
 import 'package:swastik_air_hub/pages/show_payment_method/show_payment_method_page.dart';
@@ -14,7 +15,6 @@ import 'package:swastik_air_hub/pages/sign_up_page/sign_up.dart';
 import 'package:swastik_air_hub/pages/trip_summary/trip_summary_page.dart';
 import 'package:swastik_air_hub/pages/view_booking_detail/main_booking_detail.dart';
 
-import '../pages/Login/main_login_page.dart';
 import '../pages/Registration/main_registration_page.dart';
 import '../pages/flight_ticket_detail_page/flight_ticket_detail_page.dart';
 
@@ -37,8 +37,10 @@ class RouteHelper {
   static const String availablePaymentMethods = '/availablePaymentMethods';
   static const String availableFlightsAndTickets =
       '/availableFlightsAndTickets';
-
+  static const String detailConfirmation = '/detailConfirmation';
   static const String viewFlightTicketDetail = '/flightticketdetail';
+  static const String updateProfile = '/updateProfile';
+
   static String getInitial() => '$initial';
   static String getNavigation() => '$navigation';
   static String getSignIn() => '$signIn';
@@ -51,21 +53,21 @@ class RouteHelper {
   static String getMenu() => '$menu';
   static String getLogin() => '$login';
   static String getResgistration() => '$registration';
-  static String getViewBookingDetail() => '$bookingDetail';
+  static String getViewBookingDetail(int pageId) =>
+      '$bookingDetail?pageId=$pageId';
   static String getTripSummarty() => '$tripSummary';
   static String getAvailablePaymentMethods() => '$availablePaymentMethods';
   static String getConfrimDetail() => '$confirmDetail';
   static String getAvailableFlightsAndTickets() =>
       '$availableFlightsAndTickets';
-  static String getFlightTicketDetail() => '$viewFlightTicketDetail';
+  static String getFlightTicketDetail(int pageId) =>
+      '$viewFlightTicketDetail?pageId=$pageId';
+  static String getDetailConfitrmationPage() => '$detailConfirmation';
+  static String getUpdTeProfile() => '$updateProfile';
 
   static List<GetPage> routes = [
     GetPage(name: homepage, page: () => Homepage()),
-    GetPage(
-      name: signIn,
-      page: () => SignInPage(),
-      popGesture: true,
-    ),
+    GetPage(name: signIn, page: () => SignInPage()),
     GetPage(name: navigation, page: () => Navigation()),
     GetPage(name: searchFlight, page: () => SeacrhFlightPage()),
     GetPage(name: bookingDetails, page: () => Bookings()),
@@ -73,23 +75,32 @@ class RouteHelper {
     GetPage(name: viewNotifications, page: () => NotificationPage()),
     GetPage(name: menu, page: () => MenuPage()),
     GetPage(name: registration, page: () => RegistrationPage()),
-    GetPage(name: login, page: () => LoginPage()),
-    GetPage(name: bookingDetail, page: () => BookingDetail()),
+    GetPage(
+        name: bookingDetail,
+        page: () {
+          var pageId = Get.parameters['pageId'];
+          return BookingDetail(
+            pageId: int.parse(pageId!),
+          );
+        }),
     GetPage(
         name: availableFlightsAndTickets,
-        page: () {
-          return ShowAvailableFlightsAndTickets();
-        },
-        popGesture: true),
-    GetPage(
-        name: confirmDetail,
-        page: () => DetailConfirmationPage(),
-        popGesture: true),
+        page: () => ShowAvailableFlightsAndTickets()),
+    GetPage(name: confirmDetail, page: () => DetailConfirmationPage()),
     GetPage(
         name: availablePaymentMethods,
         page: () => ShowAvailablePaymentMethods()),
     GetPage(name: tripSummary, page: () => TripSummaryPage()),
-    GetPage(name: signUp, page: () => SignUpPage(), popGesture: true),
-    GetPage(name: viewFlightTicketDetail, page: () => FlightTicketDetailPage()),
+    GetPage(name: signUp, page: () => SignUpPage()),
+    GetPage(
+        name: viewFlightTicketDetail,
+        page: () {
+          var pageId = Get.parameters['pageId'];
+          return FlightTIcketDetailPage(
+            pageId: int.parse(pageId!),
+          );
+        }),
+    GetPage(name: detailConfirmation, page: () => DetailConfirmationPage()),
+    GetPage(name: updateProfile, page: () => UpdateProfilePage()),
   ];
 }

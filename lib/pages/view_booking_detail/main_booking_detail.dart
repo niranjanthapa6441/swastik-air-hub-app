@@ -4,27 +4,19 @@ import 'package:swastik_air_hub/pages/view_booking_detail/booking_detail_page_bo
 
 import '../../route_helper/route_helper.dart';
 
-class BookingDetail extends StatefulWidget {
-  const BookingDetail({Key? key}) : super(key: key);
+class BookingDetail extends StatelessWidget {
+  int pageId;
+  BookingDetail({required this.pageId, Key? key}) : super(key: key);
 
-  @override
-  _BookingDetailState createState() => _BookingDetailState();
-}
-
-class _BookingDetailState extends State<BookingDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-            onTap: () {
-              Get.toNamed(RouteHelper.bookingDetails);
-            },
-            child: Icon(Icons.arrow_back)),
+        automaticallyImplyLeading: false,
         title: const Text('Booking Detail'),
         backgroundColor: Color.fromARGB(169, 46, 38, 196),
       ),
-      body: BookingDetailBody(),
+      body: BookingDetailPageBody(pageId: pageId),
     );
   }
 }

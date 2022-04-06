@@ -9,11 +9,12 @@ class AppConstants {
   static const String SIGN_UP_URI = API_VERSION + "customer/register";
   static const String SIGN_IN_URI = API_VERSION + "customer/login";
   static const String TOKEN = "hgv";
-  static String USER_ID = "";
+  static String USER_ID = "CUSTOMER1";
   static String FROM = "";
   static String To = "";
   static const String SEARCH_AVAILABLE_FLIGHT_URI =
       API_VERSION + "flight/searchFlights";
 
   static String FLIGHT_DATE = "";
+  static int NUMBER_OF_TRAVELLER = 0;
 }

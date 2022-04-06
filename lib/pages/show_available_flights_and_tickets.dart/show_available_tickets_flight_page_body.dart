@@ -41,6 +41,9 @@ class _ShowAvailableTicketsPageBodyState
                     text: "From:",
                     size: 16,
                   ),
+                  SizedBox(
+                    height: Dimensions.height10,
+                  ),
                   BigText(
                     text: AppConstants.FROM,
                     size: 16,
@@ -77,6 +80,9 @@ class _ShowAvailableTicketsPageBodyState
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   BigText(text: "To:", size: 16),
+                  SizedBox(
+                    height: Dimensions.height10,
+                  ),
                   BigText(text: AppConstants.To, size: 16),
                 ],
               ),
@@ -182,7 +188,7 @@ class _ShowAvailableTicketsPageBodyState
                     size: 18,
                   ),
                   SizedBox(
-                    height: Dimensions.height5,
+                    height: Dimensions.height10,
                   ),
                   BigText(
                     text: "Flight Code: " +
@@ -214,7 +220,7 @@ class _ShowAvailableTicketsPageBodyState
                   GestureDetector(
                     onTap: () {
                       //Get.toNamed(RouteHelper.getViewBookingDetail());
-                      Get.toNamed(RouteHelper.getFlightTicketDetail());
+                      Get.toNamed(RouteHelper.getFlightTicketDetail(index));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,

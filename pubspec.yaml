@@ -39,6 +39,9 @@ dependencies:
   get: ^4.6.1
   shared_preferences: ^2.0.13
   snippet_coder_utils: ^1.0.12
+  khalti_flutter: ^2.0.0
+  date_format: ^2.0.5
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

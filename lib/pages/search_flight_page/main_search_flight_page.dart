@@ -13,18 +13,16 @@ class SeacrhFlightPage extends StatefulWidget {
 
 class _SeacrhFlightPageState extends State<SeacrhFlightPage> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: GestureDetector(
-            onTap: () {
-              Get.toNamed(RouteHelper.initial);
-            },
-            child: Icon(Icons.arrow_back)),
-        title: const Text('Search'),
-        backgroundColor: Color.fromARGB(169, 46, 38, 196),
+  Widget build(BuildContext context) => WillPopScope(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Search'),
+          automaticallyImplyLeading: false,
+          backgroundColor: Color.fromARGB(169, 46, 38, 196),
+        ),
+        body: SearchFlightPageBody(),
       ),
-      body: SearchFlightPageBody(),
-    );
-  }
+      onWillPop: () async {
+        return false;
+      });
 }

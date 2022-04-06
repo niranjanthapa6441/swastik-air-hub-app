@@ -13,22 +13,16 @@ class Bookings extends StatefulWidget {
 
 class _BookingDetailsState extends State<Bookings> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Get.toNamed(RouteHelper.navigation);
-          },
-          child: Icon(
-            Icons.arrow_back_outlined,
-            size: 30,
-          ),
+  Widget build(BuildContext context) => WillPopScope(
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('Booking Details'),
+          backgroundColor: Color.fromARGB(169, 46, 38, 196),
         ),
-        title: const Text('Booking Details'),
-        backgroundColor: Color.fromARGB(169, 46, 38, 196),
+        body: BookingsBody(),
       ),
-      body: BookingsBody(),
-    );
-  }
+      onWillPop: () async {
+        return false;
+      });
 }

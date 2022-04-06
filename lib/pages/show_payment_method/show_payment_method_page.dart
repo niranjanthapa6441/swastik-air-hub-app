@@ -5,7 +5,7 @@ class ShowAvailablePaymentMethods extends StatefulWidget {
   const ShowAvailablePaymentMethods({Key? key}) : super(key: key);
 
   @override
-  _ShowAvailablePaymentMethodsState createState() =>
+  State<ShowAvailablePaymentMethods> createState() =>
       _ShowAvailablePaymentMethodsState();
 }
 
@@ -14,6 +14,11 @@ class _ShowAvailablePaymentMethodsState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text('Pay Via'),
+        backgroundColor: Color.fromARGB(169, 46, 38, 196),
+      ),
       body: ShowAvailablePaymentMethodsPageBody(),
     );
   }
