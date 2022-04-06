@@ -17,4 +17,12 @@ class AppConstants {
 
   static String FLIGHT_DATE = "";
   static int NUMBER_OF_TRAVELLER = 0;
+  static String FLIGHT_CODE = "";
+  static String TICKET_CODE = "";
+  static String DURATION = "";
+  static String DEPARTURE_TIME = "";
+
+  static int TotalTicketPrice = 0;
+
+  static const String SAVE_BOOKING_DETAIL_URI = API_VERSION + "booking";
 }

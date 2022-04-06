@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:swastik_air_hub/model/bookingRequest.dart';
 import 'package:swastik_air_hub/route_helper/route_helper.dart';
 import 'package:swastik_air_hub/utils/app_constants/app_constants.dart';
 
+import '../../base/show_custom_snack_bar.dart';
+import '../../controller/booking_details_controller.dart';
 import '../../utils/Color/colors.dart';
 import '../../utils/dimesions/dimesions.dart';
 import '../../widgets/big_text.dart';
@@ -51,7 +54,7 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BigText(
-                    text: "Departure Date: ",
+                    text: "Departure Date: " + AppConstants.FLIGHT_DATE,
                     color: Color.fromARGB(169, 42, 42, 43),
                     size: 18,
                   ),
@@ -59,7 +62,7 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
                     height: Dimensions.height20,
                   ),
                   BigText(
-                    text: "Departure Time: ",
+                    text: "Departure Time: " + AppConstants.DEPARTURE_TIME,
                     color: Color.fromARGB(169, 42, 42, 43),
                     size: 18,
                   ),
@@ -91,7 +94,7 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
                     height: Dimensions.height20,
                   ),
                   BigText(
-                    text: "Duration: ",
+                    text: "Duration: " + AppConstants.DURATION,
                     color: Color.fromARGB(169, 42, 42, 43),
                     size: 18,
                   ),
@@ -270,12 +273,12 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
                           size: 18,
                         ),
                         BigText(
-                          text: "4",
+                          text: AppConstants.NUMBER_OF_TRAVELLER.toString(),
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),
                         BigText(
-                          text: "1700",
+                          text: AppConstants.TotalTicketPrice.toString(),
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),
@@ -288,7 +291,7 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
           ),
           GestureDetector(
             onTap: () {
-              Get.toNamed(RouteHelper.availablePaymentMethods);
+              _saveBookingDetails();
             },
             child: Container(
               margin: EdgeInsets.only(
@@ -312,5 +315,41 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
         ],
       ),
     );
+  }
+
+  void _saveBookingDetails() {
+    String flightCode = AppConstants.FLIGHT_CODE;
+    String ticketCode = AppConstants.TICKET_CODE;
+    String customerId = AppConstants.USER_ID;
+    int numberOfTraveller = AppConstants.NUMBER_OF_TRAVELLER;
+    int totalTicketPrice = AppConstants.TotalTicketPrice;
+    print("ticket price" + totalTicketPrice.toString());
+    List<PassengerRequest> passengerList = [];
+    PassengerRequest passengerRequest = PassengerRequest(
+        firstName: "dsfasd",
+        lastName: "ASDfasd",
+        middleName: "ASdfasd",
+        phoneNumber: "Asdfasd");
+    passengerList.add(passengerRequest);
+    String status = "PURCHASED";
+    BookingRequest request = BookingRequest(
+        customerId: customerId,
+        flightCode: flightCode,
+        ticketCode: ticketCode,
+        numberOfTraveller: numberOfTraveller,
+        passengerList: passengerList,
+        status: status,
+        totalTicketPrice: AppConstants.TotalTicketPrice);
+    var bookingController = Get.find<CustomerBookingDetailController>();
+    bookingController.saveBookingDetails(request).then((status) {
+      print(status.isSucces);
+      if (status.isSucces) {
+        showCustomSnackBar(totalTicketPrice.toString(),
+            title: "Booking Detail");
+        Get.toNamed(RouteHelper.getAvailablePaymentMethods());
+      } else {
+        showCustomSnackBar(status.message, title: "Booking Detail");
+      }
+    });
   }
 }

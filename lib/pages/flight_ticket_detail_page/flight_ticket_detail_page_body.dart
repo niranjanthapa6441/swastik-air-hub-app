@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:swastik_air_hub/controller/flight_controller.dart';
 import 'package:swastik_air_hub/model/search_flight_response.dart';
 import 'package:swastik_air_hub/utils/Color/colors.dart';
+import 'package:swastik_air_hub/utils/app_constants/app_constants.dart';
 import 'package:swastik_air_hub/widgets/big_text.dart';
 
 import '../../route_helper/route_helper.dart';
@@ -158,6 +159,11 @@ class FlightTicketDetailPageBody extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Get.toNamed(RouteHelper.getConfrimDetail());
+              _setTicketCode(flightTicketDetail.ticket!.ticketCode.toString());
+              _setFlightCode(flightTicketDetail.flightCode.toString());
+              _setDuration(flightTicketDetail.sector!.duration.toString());
+              _setDepartureTime(flightTicketDetail.departureTime.toString());
+              _setTotalTicketPrice(flightTicketDetail.ticket!.price.toString());
             },
             child: Container(
               margin: EdgeInsets.only(
@@ -181,5 +187,27 @@ class FlightTicketDetailPageBody extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _setTicketCode(String ticketCode) {
+    AppConstants.TICKET_CODE = ticketCode;
+  }
+
+  void _setFlightCode(String flightCode) {
+    AppConstants.FLIGHT_CODE = flightCode;
+  }
+
+  void _setDepartureTime(String departureTime) {
+    AppConstants.DEPARTURE_TIME = departureTime;
+  }
+
+  void _setDuration(String duration) {
+    AppConstants.DURATION = duration;
+  }
+
+  void _setTotalTicketPrice(String ticketPrice) {
+    int totalTicketPrice =
+        int.parse(ticketPrice) * AppConstants.NUMBER_OF_TRAVELLER;
+    AppConstants.TotalTicketPrice = totalTicketPrice;
   }
 }

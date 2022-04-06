@@ -30,7 +30,7 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
     print("current screen height" +
         MediaQuery.of(context).size.height.toString());
     print("width" + MediaQuery.of(context).size.width.toString());
-    Get.find<CustomerBookingDetailController>().getPopularProductList();
+    Get.find<CustomerBookingDetailController>().getCustomerBookingDetails();
     return Column(
       children: [
         GetBuilder<CustomerBookingDetailController>(
@@ -115,7 +115,8 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BigText(
-                    text: "Booking Id: " + booking.id.toString(),
+                    text: "Departure Date: " +
+                        booking.flightTicket!.detail!.departureDate.toString(),
                     color: AppColors.mainBlackColor,
                     size: 18,
                   ),

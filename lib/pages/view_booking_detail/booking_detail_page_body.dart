@@ -50,14 +50,6 @@ class BookingDetailPageBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(
-                      text: "Booking Id: " + booking.id.toString(),
-                      color: Color.fromARGB(169, 42, 42, 43),
-                      size: 18,
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20,
-                    ),
-                    BigText(
                       text: "Booking Date: " + booking.bookingDate.toString(),
                       color: Color.fromARGB(169, 42, 42, 43),
                       size: 18,
@@ -104,6 +96,15 @@ class BookingDetailPageBody extends StatelessWidget {
                     ),
                     BigText(
                       text: "Status: " + booking.status.toString(),
+                      color: Color.fromARGB(169, 42, 42, 43),
+                      size: 18,
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    BigText(
+                      text: "Total Ticket Price : " +
+                          booking.totalTicketPrice.toString(),
                       color: Color.fromARGB(169, 42, 42, 43),
                       size: 18,
                     ),

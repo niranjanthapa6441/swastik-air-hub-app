@@ -162,34 +162,34 @@ class _SearchFlightPageBodyState extends State<SearchFlightPageBody> {
   void _searchFlight() {
     String sectorCode = dropdownValue;
     String departureDate = DateFormat.yMMMMd().format(_selectedValue);
-    if (!(numberOfTravellerController.text.toString().trim().isNum) ||
-        numberOfTravellerController.text.toString().trim().isEmpty) {
-      showCustomSnackBar("Provide Valid Details", title: "Number Of Traveller");
-    }
     if (dropdownValue.isEmpty) {
       showCustomSnackBar("Select Sector", title: "Sector");
-    }
-    String number = numberOfTravellerController.text.toString().trim();
-    int numberOfTraveller = int.parse(number);
-    AppConstants.NUMBER_OF_TRAVELLER = numberOfTraveller;
-    SearchFlightRequestBody searchFlightRequestBody = SearchFlightRequestBody(
-        sectorCode: sectorCode,
-        departureDate: departureDate,
-        numberOfTraveller: numberOfTraveller);
-    var flightController = Get.find<FlightController>();
+    } else if (!(numberOfTravellerController.text.toString().trim().isNum) ||
+        numberOfTravellerController.text.toString().trim().isEmpty) {
+      showCustomSnackBar("Provide Valid Details", title: "Number Of Traveller");
+    } else {
+      String number = numberOfTravellerController.text.toString().trim();
+      int numberOfTraveller = int.parse(number);
+      AppConstants.NUMBER_OF_TRAVELLER = numberOfTraveller;
+      SearchFlightRequestBody searchFlightRequestBody = SearchFlightRequestBody(
+          sectorCode: sectorCode,
+          departureDate: departureDate,
+          numberOfTraveller: numberOfTraveller);
+      var flightController = Get.find<FlightController>();
 
-    flightController
-        .findAvailableflights(searchFlightRequestBody)
-        .then((status) {
-      if (status.isSucces) {
-        Get.toNamed(RouteHelper.getAvailableFlightsAndTickets());
-        showCustomSnackBar("Showing Available Flights",
-            title: "Search Flights");
-      } else {
-        showCustomSnackBar(status.message, title: "Search Flight");
-      }
-    });
-    print(flightController.availableFlights);
+      flightController
+          .findAvailableflights(searchFlightRequestBody)
+          .then((status) {
+        if (status.isSucces) {
+          Get.toNamed(RouteHelper.getAvailableFlightsAndTickets());
+          showCustomSnackBar("Showing Available Flights",
+              title: "Search Flights");
+        } else {
+          showCustomSnackBar(status.message, title: "Search Flight");
+        }
+      });
+      print(flightController.availableFlights);
+    }
   }
 
   _getDateFromUser() async {
