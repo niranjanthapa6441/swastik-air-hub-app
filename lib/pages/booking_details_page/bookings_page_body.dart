@@ -30,7 +30,6 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
     print("current screen height" +
         MediaQuery.of(context).size.height.toString());
     print("width" + MediaQuery.of(context).size.width.toString());
-    Get.find<CustomerBookingDetailController>().getCustomerBookingDetails();
     return Column(
       children: [
         GetBuilder<CustomerBookingDetailController>(

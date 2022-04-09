@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:swastik_air_hub/pages/homepage/home_page_body.dart';
 import 'package:swastik_air_hub/widgets/button_navigation_bar.dart';
+import 'package:swastik_air_hub/widgets/navigation_drawer_widget.dart';
 
 import '../../route_helper/route_helper.dart';
 import '../profilepage/main_profile_page.dart';
@@ -21,7 +22,6 @@ class _HomepageState extends State<Homepage> {
           appBar: AppBar(
             title: const Text('Home'),
             backgroundColor: Color.fromARGB(169, 46, 38, 196),
-            automaticallyImplyLeading: false,
             actions: [
               IconButton(
                 icon: Icon(Icons.notifications),
@@ -29,14 +29,9 @@ class _HomepageState extends State<Homepage> {
                   Get.toNamed(RouteHelper.getViewNotiifcations());
                 },
               ),
-              IconButton(
-                icon: Icon(Icons.menu),
-                onPressed: () {
-                  Get.toNamed(RouteHelper.getMenu());
-                },
-              ),
             ],
           ),
+          drawer: NavigationDrawerWidget(),
           body: HomePageBody()),
       onWillPop: () async {
         return false;

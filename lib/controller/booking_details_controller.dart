@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:swastik_air_hub/model/booking.dart';
 import 'package:swastik_air_hub/model/bookingRequest.dart';
 import 'package:swastik_air_hub/repositories/booking_details_repo.dart';
+import 'package:swastik_air_hub/utils/app_constants/app_constants.dart';
 
 import '../model/response_model.dart';
 
@@ -12,17 +13,22 @@ class CustomerBookingDetailController extends GetxController {
 
   List<dynamic> _customerBookingDetails = [];
   List<dynamic> get customerBookingDetails => _customerBookingDetails;
+  void setCustomerBookingDetail() {
+    _customerBookingDetails = [];
+  }
+
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
   Future<void> getCustomerBookingDetails() async {
+    print(AppConstants.USER_ID);
+
     Response response = await detailRepo.getCustomerBookingDetails();
-    print(response.statusCode);
     if (response.statusCode == 200) {
-      print("products");
       _isLoaded = true;
       _customerBookingDetails = [];
       CustomerBookingDetailResponse details =
           CustomerBookingDetailResponse.fromJson(response.body);
+
       _customerBookingDetails.addAll(
           CustomerBookingDetailResponse.fromJson(response.body)
               .customerBookingDetails);

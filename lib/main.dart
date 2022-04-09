@@ -6,6 +6,7 @@ import 'package:swastik_air_hub/pages/homepage/navigation.dart';
 import 'package:swastik_air_hub/pages/search_flight_page/main_search_flight_page.dart';
 import 'package:swastik_air_hub/pages/sign_in_page/sign_in.dart';
 import 'package:swastik_air_hub/pages/sign_up_page/sign_up.dart';
+import 'package:swastik_air_hub/pages/trip_summary/trip_summary_page.dart';
 import 'package:swastik_air_hub/route_helper/route_helper.dart';
 import 'package:swastik_air_hub/utils/helper/dependencies.dart' as dep;
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SwastikAirhub',
-      home: const SignInPage(),
+      home: const Homepage(),
       getPages: RouteHelper.routes,
     );
   }

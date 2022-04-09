@@ -262,7 +262,10 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
                       ],
                     ),
                   ),
-                  SizedBox(height: Dimensions.height20),
+                  Divider(
+                    color: Colors.black,
+                    thickness: 2,
+                  ),
                   Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
