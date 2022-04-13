@@ -32,15 +32,18 @@ class BookingRequest {
 }
 
 class PassengerRequest {
-  String firstName;
-  String lastName;
-  String middleName;
-  String phoneNumber;
+  String? firstName;
+  String? lastName;
+  String? middleName;
+  String? phoneNumber;
+  int? id;
+
   PassengerRequest(
-      {required this.firstName,
-      required this.lastName,
-      required this.middleName,
-      required this.phoneNumber});
+      {this.id,
+      this.firstName,
+      this.lastName,
+      this.middleName,
+      this.phoneNumber});
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['firstName'] = this.firstName;

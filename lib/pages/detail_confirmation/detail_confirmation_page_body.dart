@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:swastik_air_hub/model/passenger.dart';
+import 'package:swastik_air_hub/pages/detail_confirmation/passenger_contact_form_widget.dart';
 import 'package:swastik_air_hub/route_helper/route_helper.dart';
 import 'package:swastik_air_hub/utils/Color/colors.dart';
 import 'package:swastik_air_hub/utils/app_constants/app_constants.dart';
@@ -9,22 +11,31 @@ import 'package:swastik_air_hub/widgets/big_text.dart';
 import '../../base/show_custom_snack_bar.dart';
 
 class DetailConfirmationPageBody extends StatefulWidget {
-  const DetailConfirmationPageBody({Key? key}) : super(key: key);
+  DetailConfirmationPageBody(
+      {Key? key, this.passenger, this.onRemove, this.index})
+      : super(key: key);
+
+  final int? index;
+  Passenger? passenger;
+  final Function? onRemove;
+  final state = _DetailConfirmationPageBodyState();
 
   @override
-  _DetailConfirmationPageBodyState createState() =>
-      _DetailConfirmationPageBodyState();
+  State<StatefulWidget> createState() {
+    return state;
+  }
+
+  TextEditingController _firstNameController = TextEditingController();
+  TextEditingController _lastNameController = TextEditingController();
+  TextEditingController _middleNameController = TextEditingController();
+  TextEditingController _contactController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  bool _firstValue = false;
+  bool _secondValue = false;
 }
 
 class _DetailConfirmationPageBodyState
     extends State<DetailConfirmationPageBody> {
-  bool firstValue = false;
-  bool secondValue = false;
-  var emailController = TextEditingController();
-  var firstNameController = TextEditingController();
-  var lastNameController = TextEditingController();
-  var middleNameController = TextEditingController();
-  var phoneNumberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -130,11 +141,11 @@ class _DetailConfirmationPageBodyState
                       child: Row(
                         children: [
                           Checkbox(
-                            value: firstValue,
+                            value: widget._firstValue,
                             onChanged: (value) {
                               setState(() {
                                 print(value);
-                                firstValue = value!;
+                                widget._firstValue = value!;
                               });
                             },
                             activeColor: Colors.blue,
@@ -158,114 +169,14 @@ class _DetailConfirmationPageBodyState
                 ),
               ),
               Container(
-                height: 350,
+                height: Dimensions.height10 * 35,
                 child: ListView.builder(
                   physics: AlwaysScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: AppConstants.NUMBER_OF_TRAVELLER,
                   itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(
-                          top: Dimensions.height10,
-                          left: Dimensions.width10,
-                          right: Dimensions.width10,
-                          bottom: Dimensions.width10),
-                      width: Dimensions.width30 * 20,
-                      height: Dimensions.height30 * 9,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.mainBlackColor),
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radius25),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: AppColors.mainBlackColor),
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.radius25),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SizedBox(
-                                    width: Dimensions.width30 * 6,
-                                    child: TextFormField(
-                                      controller: firstNameController,
-                                      decoration: const InputDecoration(
-                                        labelText: 'First Name',
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: Dimensions.width30 * 6,
-                                    child: TextFormField(
-                                      controller: middleNameController,
-                                      decoration: const InputDecoration(
-                                        labelText: 'Middle Name',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: Dimensions.height20,
-                            ),
-                            Container(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SizedBox(
-                                    width: Dimensions.width30 * 6,
-                                    child: TextFormField(
-                                      controller: lastNameController,
-                                      decoration: const InputDecoration(
-                                        labelText: 'Last Name',
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: Dimensions.width30 * 6,
-                                    child: TextFormField(
-                                      controller: emailController,
-                                      decoration: const InputDecoration(
-                                        labelText: 'Email',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: Dimensions.height20,
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: Dimensions.width10),
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: Dimensions.width30 * 8,
-                                    child: TextFormField(
-                                      controller: phoneNumberController,
-                                      decoration: const InputDecoration(
-                                        labelText: 'Phone Number',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: Dimensions.height20,
-                            ),
-                          ],
-                        ),
-                      ),
+                    return ContactFormWidget(
+                      index: index,
                     );
                   },
                 ),
@@ -277,11 +188,11 @@ class _DetailConfirmationPageBodyState
           child: Row(
             children: [
               Checkbox(
-                value: secondValue,
+                value: widget._secondValue,
                 onChanged: (value) {
                   setState(() {
                     print(value);
-                    secondValue = value!;
+                    widget._secondValue = value!;
                   });
                 },
                 activeColor: Colors.blue,
@@ -312,11 +223,11 @@ class _DetailConfirmationPageBodyState
   }
 
   void _validatePassengerDetails() {
-    String firstName = firstNameController.text.trim();
-    String lastName = lastNameController.text.trim();
-    String middleName = middleNameController.text.trim();
-    String email = emailController.text.trim();
-    String phoneNumber = phoneNumberController.text.trim();
+    String firstName = widget._firstNameController.text.trim();
+    String lastName = widget._lastNameController.text.trim();
+    String middleName = widget._middleNameController.text.trim();
+    String email = widget._emailController.text.trim();
+    String phoneNumber = widget._contactController.text.trim();
     if (firstName.isEmpty) {
       showCustomSnackBar("First Name is Empty", title: "First Name");
     } else if (lastName.isEmpty) {

@@ -1,6 +1,8 @@
 class AppConstants {
   static const String APP_NAME = "NiFOOD";
   static const String BASE_URL = "http://192.168.1.118:8083/swastikairhub/";
+  //static const String BASE_URL = "http://100.64.196.254:8083/swastikairhub/";
+
   static const String API_VERSION = "api/v1/";
   static const String CUSTOMER_URI = API_VERSION + "customer";
   static const String RECOMMENDED_PRODUCT_URI = "";
@@ -16,7 +18,7 @@ class AppConstants {
       API_VERSION + "flight/searchFlights";
 
   static String FLIGHT_DATE = "";
-  static int NUMBER_OF_TRAVELLER = 0;
+  static int NUMBER_OF_TRAVELLER = 1;
   static String FLIGHT_CODE = "";
   static String TICKET_CODE = "";
   static String DURATION = "";
