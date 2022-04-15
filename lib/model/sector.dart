@@ -1,27 +1,33 @@
 class SectorAPIResponse {
-  String? code;
-  String? message;
-  List<Sector>? data;
+  String? _code;
+  String? _message;
+  late List<Sector> _data;
+  List<Sector> get sectors => _data;
+  String? get message => _message;
 
-  SectorAPIResponse({this.code, this.message, this.data});
+  SectorAPIResponse({required code, required message, required data}) {
+    this._code = code;
+    this._message = message;
+    this._data = data;
+  }
 
   SectorAPIResponse.fromJson(Map<String, dynamic> json) {
-    code = json['code'];
-    message = json['message'];
+    _code = json['code'];
+    _message = json['message'];
     if (json['data'] != null) {
-      data = <Sector>[];
+      _data = <Sector>[];
       json['data'].forEach((v) {
-        data!.add(new Sector.fromJson(v));
+        _data.add(new Sector.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
+    data['code'] = this._code;
     data['message'] = this.message;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    if (this._data != null) {
+      data['data'] = this._data.map((v) => v.toJson()).toList();
     }
     return data;
   }

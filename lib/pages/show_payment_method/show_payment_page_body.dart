@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khalti_flutter/khalti_flutter.dart';
 import 'package:swastik_air_hub/utils/dimesions/dimesions.dart';
 import 'package:swastik_air_hub/widgets/big_text.dart';
+
+import '../../base/show_custom_snack_bar.dart';
+import '../../controller/booking_details_controller.dart';
+import '../../model/bookingRequest.dart';
+import '../../route_helper/route_helper.dart';
+import '../../utils/app_constants/app_constants.dart';
 
 class ShowAvailablePaymentMethodsPageBody extends StatefulWidget {
   const ShowAvailablePaymentMethodsPageBody({Key? key}) : super(key: key);
@@ -72,6 +79,10 @@ class _ShowAvailablePaymentPageBodyState
                       );
                       ScaffoldMessenger.of(context)
                           .showSnackBar(successsnackBar);
+                      AppConstants.paidAmount = su.amount;
+                      AppConstants.paymentMethod = "Online";
+                      AppConstants.paidVia = "Khalti";
+                      _saveBookingDetails();
                     },
                     onFailure: (fa) {
                       const failedsnackBar = SnackBar(
@@ -93,5 +104,46 @@ class _ShowAvailablePaymentPageBodyState
         ),
       ),
     );
+  }
+
+  void _saveBookingDetails() {
+    String flightCode = AppConstants.FLIGHT_CODE;
+    String ticketCode = AppConstants.TICKET_CODE;
+    String customerId = AppConstants.USER_ID;
+    int numberOfTraveller = AppConstants.NUMBER_OF_TRAVELLER;
+    int totalTicketPrice = AppConstants.TotalTicketPrice;
+    print("ticket price" + totalTicketPrice.toString());
+    List<PassengerRequest> passengerList = [];
+    PassengerRequest passengerRequest = PassengerRequest(
+        firstName: "dsfasd",
+        lastName: "ASDfasd",
+        middleName: "ASdfasd",
+        phoneNumber: "Asdfasd");
+    passengerList.add(passengerRequest);
+    String status = "PURCHASED";
+    BookingRequest request = BookingRequest(
+        customerId: customerId,
+        flightCode: flightCode,
+        ticketCode: ticketCode,
+        numberOfTraveller: numberOfTraveller,
+        passengerList: passengerList,
+        status: status,
+        totalTicketPrice: AppConstants.TotalTicketPrice,
+        paidAmount: AppConstants.paidAmount,
+        paymentMethod: AppConstants.paymentMethod,
+        paymentStatus: "Sucess",
+        paidVia: AppConstants.paidVia);
+
+    var bookingController = Get.find<CustomerBookingDetailController>();
+    bookingController.saveBookingDetails(request).then((status) {
+      print(status.isSucces);
+      if (status.isSucces) {
+        showCustomSnackBar(totalTicketPrice.toString(),
+            title: "Booking Detail");
+        Get.toNamed(RouteHelper.getNavigation());
+      } else {
+        showCustomSnackBar(status.message, title: "Booking Detail");
+      }
+    });
   }
 }

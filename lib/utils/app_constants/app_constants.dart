@@ -16,6 +16,7 @@ class AppConstants {
   static String To = "";
   static const String SEARCH_AVAILABLE_FLIGHT_URI =
       API_VERSION + "flight/searchFlights";
+  static const String SECTOR_URI = API_VERSION + "sector";
 
   static String FLIGHT_DATE = "";
   static int NUMBER_OF_TRAVELLER = 1;
@@ -23,8 +24,11 @@ class AppConstants {
   static String TICKET_CODE = "";
   static String DURATION = "";
   static String DEPARTURE_TIME = "";
+  static String paymentMethod = "";
+  static String paidVia = "";
 
   static int TotalTicketPrice = 0;
+  static int paidAmount = 0;
 
   static const String SAVE_BOOKING_DETAIL_URI = API_VERSION + "booking";
 }

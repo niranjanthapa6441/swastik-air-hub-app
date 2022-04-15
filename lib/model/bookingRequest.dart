@@ -6,6 +6,10 @@ class BookingRequest {
   String status;
   int totalTicketPrice;
   List<PassengerRequest>? passengerList;
+  String paymentMethod;
+  String paymentStatus;
+  int paidAmount;
+  String paidVia;
   BookingRequest(
       {required this.customerId,
       required this.flightCode,
@@ -13,7 +17,11 @@ class BookingRequest {
       required this.numberOfTraveller,
       required this.passengerList,
       required this.status,
-      required this.totalTicketPrice});
+      required this.totalTicketPrice,
+      required this.paymentMethod,
+      required this.paymentStatus,
+      required this.paidAmount,
+      required this.paidVia});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

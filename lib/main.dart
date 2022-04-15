@@ -25,8 +25,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print(Get.find<CustomerBookingDetailController>().customerBookingDetails);
-
     return KhaltiScope(
         publicKey: "test_public_key_30e12814fed64afa9a7d4a92a2194aeb",
         builder: (context, navigatorKey) {

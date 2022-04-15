@@ -294,7 +294,7 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
           ),
           GestureDetector(
             onTap: () {
-              _saveBookingDetails();
+              Get.toNamed(RouteHelper.availablePaymentMethods);
             },
             child: Container(
               margin: EdgeInsets.only(
@@ -318,41 +318,5 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
         ],
       ),
     );
-  }
-
-  void _saveBookingDetails() {
-    String flightCode = AppConstants.FLIGHT_CODE;
-    String ticketCode = AppConstants.TICKET_CODE;
-    String customerId = AppConstants.USER_ID;
-    int numberOfTraveller = AppConstants.NUMBER_OF_TRAVELLER;
-    int totalTicketPrice = AppConstants.TotalTicketPrice;
-    print("ticket price" + totalTicketPrice.toString());
-    List<PassengerRequest> passengerList = [];
-    PassengerRequest passengerRequest = PassengerRequest(
-        firstName: "dsfasd",
-        lastName: "ASDfasd",
-        middleName: "ASdfasd",
-        phoneNumber: "Asdfasd");
-    passengerList.add(passengerRequest);
-    String status = "PURCHASED";
-    BookingRequest request = BookingRequest(
-        customerId: customerId,
-        flightCode: flightCode,
-        ticketCode: ticketCode,
-        numberOfTraveller: numberOfTraveller,
-        passengerList: passengerList,
-        status: status,
-        totalTicketPrice: AppConstants.TotalTicketPrice);
-    var bookingController = Get.find<CustomerBookingDetailController>();
-    bookingController.saveBookingDetails(request).then((status) {
-      print(status.isSucces);
-      if (status.isSucces) {
-        showCustomSnackBar(totalTicketPrice.toString(),
-            title: "Booking Detail");
-        Get.toNamed(RouteHelper.getAvailablePaymentMethods());
-      } else {
-        showCustomSnackBar(status.message, title: "Booking Detail");
-      }
-    });
   }
 }

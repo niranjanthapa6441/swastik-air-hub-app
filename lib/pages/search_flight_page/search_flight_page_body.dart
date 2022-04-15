@@ -10,6 +10,7 @@ import 'package:swastik_air_hub/utils/dimesions/dimesions.dart';
 import 'package:swastik_air_hub/widgets/big_text.dart';
 
 import '../../base/show_custom_snack_bar.dart';
+import '../../controller/sector_controller.dart';
 import '../../widgets/app_text_field.dart';
 
 class SearchFlightPageBody extends StatefulWidget {
@@ -36,6 +37,8 @@ class _SearchFlightPageBodyState extends State<SearchFlightPageBody> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> sectorCodes = Get.find<SectorController>().sectorCodes;
+
     return ListView(
       children: [
         Column(
@@ -99,12 +102,8 @@ class _SearchFlightPageBodyState extends State<SearchFlightPageBody> {
                               print(dropdownValue);
                             });
                           },
-                          items: <String>[
-                            'KTM-PKR',
-                            'PKR-SKT',
-                            'PKR-KTM',
-                            'KTM-BHW'
-                          ].map<DropdownMenuItem<String>>((String value) {
+                          items: sectorCodes
+                              .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
