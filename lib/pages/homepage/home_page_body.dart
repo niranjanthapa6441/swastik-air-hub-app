@@ -203,7 +203,7 @@ class _HomePageBodyState extends State<HomePageBody> {
       margin: EdgeInsets.only(
           left: Dimensions.width20,
           right: Dimensions.width20,
-          bottom: Dimensions.height10),
+          bottom: Dimensions.height5),
       child: Row(
         children: [
           //imageContainer
@@ -225,7 +225,9 @@ class _HomePageBodyState extends State<HomePageBody> {
             child: Container(
               width: Dimensions.height10 * 23,
               height: Dimensions.height10 * 12,
-              margin: EdgeInsets.only(left: 10, top: 10),
+              margin: EdgeInsets.only(
+                left: 10,
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(20),

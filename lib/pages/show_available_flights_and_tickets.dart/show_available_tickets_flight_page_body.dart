@@ -5,6 +5,7 @@ import 'package:swastik_air_hub/model/search_flight_response.dart';
 import 'package:swastik_air_hub/route_helper/route_helper.dart';
 import 'package:swastik_air_hub/utils/Color/colors.dart';
 import 'package:swastik_air_hub/utils/app_constants/app_constants.dart';
+import 'package:swastik_air_hub/widgets/icon_and_text_widget.dart';
 
 import '../../utils/dimesions/dimesions.dart';
 import '../../widgets/big_text.dart';
@@ -20,6 +21,15 @@ class ShowAvailableTicketsPageBody extends StatefulWidget {
 
 class _ShowAvailableTicketsPageBodyState
     extends State<ShowAvailableTicketsPageBody> {
+  String dropdownValue = '';
+  bool sectorSelection = false;
+  bool filterValue = false;
+  List<String> sortBy = ['Low to High Price', 'High to Low Price'];
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -101,21 +111,38 @@ class _ShowAvailableTicketsPageBodyState
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                  width: Dimensions.width30 * 8,
-                  child: BigText(text: "Available Flights")),
+                width: Dimensions.width30 * 8,
+                child: BigText(text: "Available Flights"),
+              ),
               Container(
-                  width: Dimensions.width30 * 4,
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.sort,
-                        size: 30,
-                      ),
-                      BigText(
-                        text: 'Sort By',
-                      ),
-                    ],
-                  ))
+                width: Dimensions.width30 * 4,
+                child: DropdownButton<String>(
+                  elevation: 16,
+                  style: TextStyle(color: AppColors.mainBlackColor),
+                  underline: null,
+                  icon: null,
+                  isExpanded: true,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                      sectorSelection = true;
+                      _changeFilterValue(newValue);
+                    });
+                  },
+                  items: sortBy.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  hint: sectorSelection
+                      ? Text(dropdownValue.toString())
+                      : IconAndTextWidget(
+                          icon: Icons.sort,
+                          text: 'Sort By',
+                          iconColor: AppColors.purpleColor),
+                ),
+              ),
             ],
           ),
         ),
@@ -132,18 +159,21 @@ class _ShowAvailableTicketsPageBodyState
               child: ListView.builder(
                 physics: AlwaysScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: availableFlights.availableFlights.isEmpty
+                itemCount: availableFlights.availableFlightsLowToHigh.isEmpty
                     ? 0
-                    : availableFlights.availableFlights.length,
+                    : availableFlights.availableFlightsLowToHigh.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {},
-                    child: availableFlights.isLoading
+                    child: filterValue
                         ? _buildCustomerBookingDetailItemPage(
-                            index, availableFlights.availableFlights[index])
-                        : CircularProgressIndicator(
-                            color: AppColors.purpleColor,
-                          ),
+                            index,
+                            fromHighToLowPrice(availableFlights
+                                .availableFlightsLowToHigh)[index])
+                        : _buildCustomerBookingDetailItemPage(
+                            index,
+                            fromLowtoHigh(availableFlights
+                                .availableFlightsLowToHigh)[index]),
                   );
                 },
               ),
@@ -244,5 +274,51 @@ class _ShowAvailableTicketsPageBodyState
         ],
       ),
     );
+  }
+
+  void _changeFilterValue(String newValue) {
+    if (newValue == 'Low to High Price') {
+      filterValue = false;
+      print(filterValue);
+    } else if (newValue == 'High to Low Price') {
+      filterValue = true;
+      print(filterValue);
+    }
+  }
+
+  List<dynamic> fromHighToLowPrice(List<dynamic> flightList) {
+    int n = flightList.length;
+    SearchFlightModel temp = new SearchFlightModel();
+    if (flightList != null) {
+      for (int i = 0; i < n; i++) {
+        for (int j = 1; j < (n - i); j++) {
+          if (flightList[j - 1].ticket!.price! < flightList[j].ticket!.price!) {
+            temp = flightList[j - 1];
+            flightList[j - 1] = flightList[j];
+            flightList[j] = temp;
+          }
+        }
+      }
+    }
+    flightList;
+    return flightList;
+  }
+
+  List<dynamic> fromLowtoHigh(List<dynamic> flightList) {
+    int n = flightList.length;
+    SearchFlightModel temp = new SearchFlightModel();
+    if (flightList != null) {
+      for (int i = 0; i < n; i++) {
+        for (int j = 1; j < (n - i); j++) {
+          if (flightList[j - 1].ticket!.price! > flightList[j].ticket!.price!) {
+            temp = flightList[j - 1];
+            flightList[j - 1] = flightList[j];
+            flightList[j] = temp;
+          }
+        }
+      }
+    }
+    flightList;
+    return flightList;
   }
 }

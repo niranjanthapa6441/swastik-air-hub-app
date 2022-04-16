@@ -117,7 +117,7 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
                 children: [
                   BigText(
                     text: "Departure Date: " +
-                        booking.flightTicket!.detail!.departureDate.toString(),
+                        booking.flightTicket!.detail!.departureDate.toString() ,
                     color: AppColors.mainBlackColor,
                     size: 18,
                   ),

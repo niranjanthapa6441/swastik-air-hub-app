@@ -18,7 +18,7 @@ class FlightTicketDetailPageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SearchFlightModel flightTicketDetail =
-        Get.find<FlightController>().availableFlights[pageId];
+        Get.find<FlightController>().availableFlightsLowToHigh[pageId];
     print(pageId);
     return Container(
       child: Column(

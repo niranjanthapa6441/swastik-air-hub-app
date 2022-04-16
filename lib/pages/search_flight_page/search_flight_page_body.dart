@@ -187,7 +187,6 @@ class _SearchFlightPageBodyState extends State<SearchFlightPageBody> {
           showCustomSnackBar(status.message, title: "Search Flight");
         }
       });
-      print(flightController.availableFlights);
     }
   }
 
