@@ -16,6 +16,7 @@ import 'package:swastik_air_hub/pages/trip_summary/trip_summary_page.dart';
 import 'package:swastik_air_hub/pages/view_booking_detail/main_booking_detail.dart';
 
 import '../pages/Registration/main_registration_page.dart';
+import '../pages/billing_info_page/billing_info_page.dart';
 import '../pages/flight_ticket_detail_page/flight_ticket_detail_page.dart';
 
 class RouteHelper {
@@ -28,6 +29,7 @@ class RouteHelper {
   static const String bookingDetails = '/bookingDetails';
   static const String viewProfile = '/viewProfile';
   static const String viewNotifications = '/viewNotifications';
+  static const String viewPaymentInfo = '/viewPaymentInfo';
   static const String menu = '/menu';
   static const String registration = '/registration';
   static const String login = '/login';
@@ -64,6 +66,7 @@ class RouteHelper {
       '$viewFlightTicketDetail?pageId=$pageId';
   static String getDetailConfitrmationPage() => '$detailConfirmation';
   static String getUpdTeProfile() => '$updateProfile';
+  static String getPaymentInfo() => '$viewPaymentInfo';
 
   static List<GetPage> routes = [
     GetPage(name: homepage, page: () => Homepage()),
@@ -102,5 +105,6 @@ class RouteHelper {
         }),
     GetPage(name: detailConfirmation, page: () => DetailConfirmationPage()),
     GetPage(name: updateProfile, page: () => UpdateProfilePage()),
+    GetPage(name: viewPaymentInfo, page: () => BillingInfoPage()),
   ];
 }

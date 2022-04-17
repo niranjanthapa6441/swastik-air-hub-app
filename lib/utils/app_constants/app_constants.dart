@@ -1,6 +1,10 @@
 class AppConstants {
-  static const String APP_NAME = "NiFOOD";
+  static const String APP_NAME = "Swastik Air Hub";
   static const String BASE_URL = "http://192.168.1.118:8083/swastikairhub/";
+  static const String BUDDHA_BASE_URL = "http://192.168.1.118:8081/buddhaair/";
+  static const String NEPAL_AIRLINES_BASE_URL =
+      "http://192.168.1.118:8082/nepalairlines/";
+
   //static const String BASE_URL = "http://100.64.196.254:8083/swastikairhub/";
 
   static const String API_VERSION = "api/v1/";
@@ -8,6 +12,8 @@ class AppConstants {
   static const String RECOMMENDED_PRODUCT_URI = "";
   static const String CUSTOMER_BOOKING_DETAIL_URI =
       API_VERSION + "booking/customer/";
+  static const String CUSTOMER_PAYMENT_DETAIL_URI =
+      API_VERSION + "payment/customer/";
   static const String SIGN_UP_URI = API_VERSION + "customer/register";
   static const String SIGN_IN_URI = API_VERSION + "customer/login";
   static const String TOKEN = "hgv";

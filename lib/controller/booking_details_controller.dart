@@ -32,6 +32,10 @@ class CustomerBookingDetailController extends GetxController {
       _customerBookingDetails.addAll(
           CustomerBookingDetailResponse.fromJson(response.body)
               .customerBookingDetails);
+      _customerBookingDetails.forEach((element) {
+        Booking booking = element;
+        print('list' + booking.passengerList.toString());
+      });
       update();
     } else {
       print(response.body["message"]);

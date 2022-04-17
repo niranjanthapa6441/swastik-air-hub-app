@@ -56,12 +56,24 @@ class SearchFlightModel {
     departureTime = json['departureTime'];
     sector =
         json['sector'] != null ? new Sector.fromJson(json['sector']) : null;
-    companyName = json['companyName'];
+    companyName = 'Buddha Airlines';
     status = json['status'];
     ticket =
         json['ticket'] != null ? new Ticket.fromJson(json['ticket']) : null;
   }
-
+  SearchFlightModel.fromNepalAirlinesJson(Map<String, dynamic> json) {
+    flightCode = json['flight_code'];
+    departureDate = json['departure_date'];
+    departureTime = json['departure_time'];
+    sector = json['sector'] != null
+        ? new Sector.fromNepalAirlinesJson(json['sector'])
+        : null;
+    companyName = 'Nepal Airlines';
+    status = json['status'];
+    ticket = json['ticket'] != null
+        ? new Ticket.fromNepalAirlinesJson(json['ticket'])
+        : null;
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['flightCode'] = this.flightCode;
@@ -103,7 +115,14 @@ class Sector {
     duration = json['duration'];
     status = json['status'];
   }
-
+  Sector.fromNepalAirlinesJson(Map<String, dynamic> json) {
+    id = json['id'];
+    sectorCode = json['sector_code'];
+    to = json['arrival'];
+    from = json['departure'];
+    duration = json['duration'];
+    status = json['status'];
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
@@ -130,7 +149,12 @@ class Ticket {
     price = json['price'];
     status = json['status'];
   }
-
+  Ticket.fromNepalAirlinesJson(Map<String, dynamic> json) {
+    id = json['id'];
+    ticketCode = json['ticket_code'];
+    price = json['ticket_price'];
+    status = json['status'];
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;

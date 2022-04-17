@@ -35,6 +35,10 @@ class BookingRequest {
       data['passengerList'] =
           this.passengerList!.map((v) => v.toJson()).toList();
     }
+    data['paidAmount'] = this.paidAmount;
+    data['paymentStatus'] = this.paymentStatus;
+    data['paymentMethod'] = this.paymentMethod;
+    data['paidVia'] = this.paidVia;
     return data;
   }
 }

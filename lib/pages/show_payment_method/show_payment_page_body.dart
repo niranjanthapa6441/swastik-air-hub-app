@@ -112,14 +112,15 @@ class _ShowAvailablePaymentPageBodyState
     String customerId = AppConstants.USER_ID;
     int numberOfTraveller = AppConstants.NUMBER_OF_TRAVELLER;
     int totalTicketPrice = AppConstants.TotalTicketPrice;
-    print("ticket price" + totalTicketPrice.toString());
     List<PassengerRequest> passengerList = [];
-    PassengerRequest passengerRequest = PassengerRequest(
-        firstName: "dsfasd",
-        lastName: "ASDfasd",
-        middleName: "ASdfasd",
-        phoneNumber: "Asdfasd");
-    passengerList.add(passengerRequest);
+    for (int i = 0; i < AppConstants.NUMBER_OF_TRAVELLER; i++) {
+      PassengerRequest passengerRequest = PassengerRequest(
+          firstName: "First Name",
+          lastName: "Last Name",
+          middleName: "Middle Name",
+          phoneNumber: "9999999999");
+      passengerList.add(passengerRequest);
+    }
     String status = "PURCHASED";
     BookingRequest request = BookingRequest(
         customerId: customerId,

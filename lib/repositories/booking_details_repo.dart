@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:swastik_air_hub/model/bookingRequest.dart';
-import 'package:swastik_air_hub/model/userId.dart';
 
 import '../utils/api/api_client.dart';
 import '../utils/app_constants/app_constants.dart';

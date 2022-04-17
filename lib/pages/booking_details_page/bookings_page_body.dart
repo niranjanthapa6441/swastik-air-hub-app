@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:swastik_air_hub/controller/booking_details_controller.dart';
 import 'package:swastik_air_hub/model/booking.dart';
-import 'package:swastik_air_hub/model/search_flight_response.dart';
-import 'package:swastik_air_hub/pages/view_booking_detail/main_booking_detail.dart';
 import 'package:swastik_air_hub/route_helper/route_helper.dart';
 
+import '../../model/booking_details.dart';
 import '../../utils/Color/colors.dart';
 import '../../utils/dimesions/dimesions.dart';
 import '../../widgets/big_text.dart';
@@ -117,7 +115,7 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
                 children: [
                   BigText(
                     text: "Departure Date: " +
-                        booking.flightTicket!.detail!.departureDate.toString() ,
+                        booking.flightTicket!.detail!.departureDate.toString(),
                     color: AppColors.mainBlackColor,
                     size: 18,
                   ),

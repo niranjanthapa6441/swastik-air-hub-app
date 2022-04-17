@@ -10,9 +10,16 @@ class BillingInfoPage extends StatefulWidget {
 
 class _BillingInfoPageState extends State<BillingInfoPage> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: BillingInfoPageBody(),
-    );
-  }
+  Widget build(BuildContext context) => WillPopScope(
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('Payment Details'),
+          backgroundColor: Color.fromARGB(169, 46, 38, 196),
+        ),
+        body: BillingInfoPageBody(),
+      ),
+      onWillPop: () async {
+        return false;
+      });
 }
