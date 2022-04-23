@@ -49,7 +49,6 @@ class FlightController extends GetxController implements GetxService {
       searchFLightAPIResponse = SearchFlightResponse.fromJson(response.body);
       buddhasearchFLightAPIResponse =
           SearchFlightResponse.fromJson(buddhaResponse.body);
-      print(nepalAirlinesResposne.body);
       nepalAirlinessearchFLightAPIResponse =
           NepalAirlinesSearchFlightResponse.fromJson(
               nepalAirlinesResposne.body);
@@ -63,17 +62,12 @@ class FlightController extends GetxController implements GetxService {
       _nepalAirlinesFLightResponse = [];
       _nepalAirlinesFLightResponse
           .addAll(nepalAirlinessearchFLightAPIResponse.availableFlightDetail);
-      print(_buddhaFlightResponse);
-      print(_nepalAirlinesFLightResponse);
       _buddhaFlightResponse.forEach((element) {
         SearchFlightModel model = element;
-        print('ticket price' + model.ticket!.price.toString());
       });
       _nepalAirlinesFLightResponse.forEach((element) {
         SearchFlightModel model = element;
-        print('ticket price nepalairlines' + model.departureDate.toString());
       });
-      print(list);
       _availableFlightsLowToHigh
           .addAll(buddhasearchFLightAPIResponse.availableFlightDetail);
       _availableFlightsLowToHigh
@@ -89,7 +83,6 @@ class FlightController extends GetxController implements GetxService {
     } else {
       searchFLightAPIResponse = SearchFlightResponse.fromJson(response.body);
       responseModel = ResponseModel(false, response.body["message"]);
-      print(response.body);
     }
     update();
     return responseModel;

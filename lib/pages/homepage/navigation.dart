@@ -37,35 +37,35 @@ class _NavigationState extends State<Navigation> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              size: 35,
+              size: 30,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.search,
-              size: 35,
+              size: 30,
             ),
             label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.book,
-              size: 35,
+              size: 30,
             ),
             label: 'Bookings',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.payment,
-              size: 35,
+              size: 30,
             ),
             label: 'Billings',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              size: 35,
+              size: 30,
             ),
             label: 'Profile',
           ),

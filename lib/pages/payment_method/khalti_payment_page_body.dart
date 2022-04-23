@@ -10,16 +10,15 @@ import '../../model/bookingRequest.dart';
 import '../../route_helper/route_helper.dart';
 import '../../utils/app_constants/app_constants.dart';
 
-class ShowAvailablePaymentMethodsPageBody extends StatefulWidget {
-  const ShowAvailablePaymentMethodsPageBody({Key? key}) : super(key: key);
+class KhaltiPaymentPageBody extends StatefulWidget {
+  const KhaltiPaymentPageBody({Key? key}) : super(key: key);
 
   @override
   _ShowAvailablePaymentPageBodyState createState() =>
       _ShowAvailablePaymentPageBodyState();
 }
 
-class _ShowAvailablePaymentPageBodyState
-    extends State<ShowAvailablePaymentMethodsPageBody> {
+class _ShowAvailablePaymentPageBodyState extends State<KhaltiPaymentPageBody> {
   TextEditingController amountController = TextEditingController();
 
   getAmt() {

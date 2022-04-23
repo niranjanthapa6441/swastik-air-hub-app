@@ -219,7 +219,10 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
               "Registration Successful! Please Verify Your Email Before logging In",
               title: "Registration");
         } else {
-          showCustomSnackBar(status.message, title: "Registration");
+          if (status.message.toLowerCase() == "bad request") {
+            showCustomSnackBar('Password must contain characters',
+                title: "Registration");
+          }
         }
       });
     }

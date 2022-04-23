@@ -3,15 +3,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swastik_air_hub/controller/auth_controller.dart';
 import 'package:swastik_air_hub/controller/booking_details_controller.dart';
 import 'package:swastik_air_hub/controller/flight_controller.dart';
+import 'package:swastik_air_hub/controller/passenger_ticket_controller.dart';
 import 'package:swastik_air_hub/controller/payment_controller.dart';
 import 'package:swastik_air_hub/controller/sector_controller.dart';
 import 'package:swastik_air_hub/repositories/auth_repository.dart';
 import 'package:swastik_air_hub/repositories/booking_details_repo.dart';
 import 'package:swastik_air_hub/repositories/buddha_flight_repo.dart';
+import 'package:swastik_air_hub/repositories/customer_repo.dart';
 import 'package:swastik_air_hub/repositories/nepal_airlines_search_flight_repo.dart';
+import 'package:swastik_air_hub/repositories/passenger_ticket_repo.dart';
 import 'package:swastik_air_hub/repositories/search_flight_reposiitory.dart';
 import 'package:swastik_air_hub/repositories/sector_repo.dart';
 import 'package:swastik_air_hub/utils/utils/api/nepal_airline_api_client.dart';
+import '../../controller/customer_controller.dart';
 import '../../repositories/payment_repo.dart';
 import '../utils/api/buddha_api_client.dart';
 import '../api/api_client.dart';
@@ -35,6 +39,8 @@ Future<void> init() async {
   Get.lazyPut(() => BuddhaSearchFlightRepo(apiClient: Get.find()));
   Get.lazyPut(() => NepalAirlinesSearchFlightRepo(apiClient: Get.find()));
   Get.lazyPut(() => CustomerPaymentDetailRepo(apiClient: Get.find()));
+  Get.lazyPut(() => CustomerDetailRepo(apiClient: Get.find()));
+  Get.lazyPut(() => PassengerTicketRepo(apiClient: Get.find()));
 
   //controllers
   Get.lazyPut(() => CustomerBookingDetailController(detailRepo: Get.find()));
@@ -45,4 +51,6 @@ Future<void> init() async {
       nepalAirlinesSearchFlightRepo: Get.find()));
   Get.lazyPut(() => SectorController(sectorRepo: Get.find()));
   Get.lazyPut(() => CustomerPaymentInfoController(detailRepo: Get.find()));
+  Get.lazyPut(() => CustomerDetailController(detailRepo: Get.find()));
+  Get.lazyPut(() => PassengerTicketController(passengerTicketRepo: Get.find()));
 }

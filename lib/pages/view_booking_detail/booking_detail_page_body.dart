@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:swastik_air_hub/controller/passenger_ticket_controller.dart';
 import 'package:swastik_air_hub/model/booking.dart';
+import 'package:swastik_air_hub/model/passenger_ticket.dart';
+import 'package:swastik_air_hub/utils/app_constants/app_constants.dart';
 import 'package:swastik_air_hub/utils/dimesions/dimesions.dart';
 import 'package:swastik_air_hub/widgets/big_text.dart';
 
 import '../../controller/booking_details_controller.dart';
-import '../../model/booking_details.dart';
-import '../../model/passenger.dart';
 
 class BookingDetailPageBody extends StatelessWidget {
   int pageId;
@@ -16,6 +17,9 @@ class BookingDetailPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Booking booking = Get.find<CustomerBookingDetailController>()
         .customerBookingDetails[pageId];
+    AppConstants.BOOKING_ID = booking.id!;
+    Get.put(PassengerTicketController(passengerTicketRepo: Get.find()));
+    Get.find<PassengerTicketController>().getPassengerTickets();
     return SingleChildScrollView(
       physics: AlwaysScrollableScrollPhysics(),
       child: Container(
@@ -162,78 +166,113 @@ class BookingDetailPageBody extends StatelessWidget {
                 ),
               ),
             ),
+            Container(
+              margin: EdgeInsets.only(
+                left: Dimensions.width20,
+                right: Dimensions.width20,
+              ),
+              width: Dimensions.width30 * 15,
+              child: BigText(text: "Ticket"),
+            ),
+            GetBuilder<PassengerTicketController>(builder: (passengerTickets) {
+              return Container(
+                height: Dimensions.height10 * 39,
+                child: ListView.builder(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: passengerTickets.passengerTicketDetails.isEmpty
+                      ? 0
+                      : passengerTickets.passengerTicketDetails.length,
+                  itemBuilder: (context, index) {
+                    return _buildRecommendedItemPage(
+                        index, passengerTickets.passengerTicketDetails[index]);
+                  },
+                ),
+              );
+            }),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildRecommendedItemPage(int index, Passenger passenger) {
+  Widget _buildRecommendedItemPage(int index, PassengerTicket passenger) {
     return Container(
+      height: Dimensions.height10 * 33,
       margin: EdgeInsets.only(
           left: Dimensions.width20,
           right: Dimensions.width20,
-          bottom: Dimensions.height30,
-          top: Dimensions.height30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          BigText(
-            text: "First Name " + passenger.firstName.toString(),
-            color: Color.fromARGB(169, 42, 42, 43),
-            size: 18,
-          ),
-          // SizedBox(
-          //   height: Dimensions.height20,
-          // ),
-          // BigText(
-          //   text: "Booking Date: " + booking.bookingDate.toString(),
-          //   color: Color.fromARGB(169, 42, 42, 43),
-          //   size: 18,
-          // ),
-          // SizedBox(
-          //   height: Dimensions.height20,
-          // ),
-          // BigText(
-          //   text: "Booking time: " + booking.bookingTime.toString(),
-          //   color: Color.fromARGB(169, 42, 42, 43),
-          //   size: 18,
-          // ),
-          // SizedBox(
-          //   height: Dimensions.height20,
-          // ),
-          // BigText(
-          //   text: "Number Of Traveller " + booking.numberOfTraveller.toString(),
-          //   color: Color.fromARGB(169, 42, 42, 43),
-          //   size: 18,
-          // ),
-          // SizedBox(
-          //   height: Dimensions.height20,
-          // ),
-          // BigText(
-          //   text: "Departure Date:  " +
-          //       booking.flightTicket!.detail!.departureDate.toString(),
-          //   color: Color.fromARGB(169, 42, 42, 43),
-          //   size: 18,
-          // ),
-          // SizedBox(
-          //   height: Dimensions.height20,
-          // ),
-          // BigText(
-          //   text: "Departure Time: " +
-          //       booking.flightTicket!.detail!.departureTime.toString(),
-          //   color: Color.fromARGB(169, 42, 42, 43),
-          //   size: 18,
-          // ),
-          // SizedBox(
-          //   height: Dimensions.height20,
-          // ),
-          // BigText(
-          //   text: "Status: " + booking.status.toString(),
-          //   color: Color.fromARGB(169, 42, 42, 43),
-          //   size: 18,
-          // ),
-        ],
+          bottom: Dimensions.height10,
+          top: Dimensions.height10),
+      width: Dimensions.width30 * 15,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(Dimensions.radius20),
+        color: Color.fromARGB(220, 234, 235, 233),
+      ),
+      child: Container(
+        margin: EdgeInsets.only(
+            left: Dimensions.width20,
+            right: Dimensions.width20,
+            bottom: Dimensions.height20,
+            top: Dimensions.height20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BigText(
+              text: "Full Name: " + passenger.passengerName.toString(),
+              color: Color.fromARGB(169, 42, 42, 43),
+              size: 18,
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            BigText(
+              text: "Departure Date: " + passenger.departureDate.toString(),
+              color: Color.fromARGB(169, 42, 42, 43),
+              size: 18,
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            BigText(
+              text: "Departure time: " + passenger.departureTime.toString(),
+              color: Color.fromARGB(169, 42, 42, 43),
+              size: 18,
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            BigText(
+              text: "Departure: " + passenger.departure.toString(),
+              color: Color.fromARGB(169, 42, 42, 43),
+              size: 18,
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            BigText(
+              text: "Arrival: " + passenger.arrival.toString(),
+              color: Color.fromARGB(169, 42, 42, 43),
+              size: 18,
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            BigText(
+              text: "Sector Code: " + passenger.sectorCode.toString(),
+              color: Color.fromARGB(169, 42, 42, 43),
+              size: 18,
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            BigText(
+              text: "Flight Code: " + passenger.flightCode.toString(),
+              color: Color.fromARGB(169, 42, 42, 43),
+              size: 18,
+            ),
+          ],
+        ),
       ),
     );
   }

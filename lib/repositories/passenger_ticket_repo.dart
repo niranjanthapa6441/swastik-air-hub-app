@@ -2,13 +2,13 @@ import 'package:get/get.dart';
 import '../utils/api/api_client.dart';
 import '../utils/app_constants/app_constants.dart';
 
-class CustomerDetailRepo extends GetxService {
+class PassengerTicketRepo extends GetxService {
   final ApiClient apiClient;
-  CustomerDetailRepo({required this.apiClient});
+  PassengerTicketRepo({required this.apiClient});
 
-  Future<Response> getCustomerDetails() async {
+  Future<Response> getPassengerTicket() async {
     return await apiClient.getData(
-        AppConstants.CUSTOMER_URI + AppConstants.USER_ID,
+        AppConstants.PASSENGER_TICKET_URI + AppConstants.BOOKING_ID,
         apiClient.mainHeaders);
   }
 }

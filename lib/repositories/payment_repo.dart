@@ -13,9 +13,4 @@ class CustomerPaymentDetailRepo extends GetxService {
         AppConstants.CUSTOMER_PAYMENT_DETAIL_URI + AppConstants.USER_ID,
         apiClient.mainHeaders);
   }
-
-  Future<Response> bookTickets(BookingRequest request) async {
-    return await apiClient.postData(
-        AppConstants.SAVE_BOOKING_DETAIL_URI, request.toJson());
-  }
 }

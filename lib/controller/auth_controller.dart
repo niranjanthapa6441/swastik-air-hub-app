@@ -23,14 +23,7 @@ class AuthController extends GetxController implements GetxService {
     late ResponseModel responseModel;
     if (response.statusCode == 200) {
       responseModel = ResponseModel(true, response.body["message"]);
-      print("sdfads");
-      // _customerRegistrationDetails = [];
-      // AuthResponse details = AuthResponse.fromJson(response.body);
-      // _customerRegistrationDetails.addAll(
-      //     AuthResponse.fromJson(response.body).customerRegistrationDetails);
-      print(_customerRegistrationDetails);
     } else {
-      print(response.body);
       responseModel = ResponseModel(false, response.body["message"]);
     }
     update();

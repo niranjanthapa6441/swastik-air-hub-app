@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swastik_air_hub/utils/dimesions/dimesions.dart';
 import 'package:swastik_air_hub/widgets/big_text.dart';
-import 'package:swastik_air_hub/widgets/small_text.dart';
 
 class IconAndTextWidget extends StatelessWidget {
   final IconData icon;

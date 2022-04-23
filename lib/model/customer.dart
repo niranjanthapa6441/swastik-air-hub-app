@@ -1,25 +1,24 @@
-import 'package:swastik_air_hub/model/booking.dart';
+class CustomerDetailResponse {
+  String? code;
+  String? message;
+  Customer? data;
 
-class AuthResponse {
-  String? _code;
-  String? _message;
-  late List<Customer> _data;
-  List<Customer> get customerRegistrationDetails => _data;
+  CustomerDetailResponse({this.code, this.message, this.data});
 
-  AuthResponse({required code, required message, required data}) {
-    _code = code;
-    _message = message;
-    _data = data;
+  CustomerDetailResponse.fromJson(Map<String, dynamic> json) {
+    code = json['code'];
+    message = json['message'];
+    data = json['data'] != null ? new Customer.fromJson(json['data']) : null;
   }
-  AuthResponse.fromJson(Map<String, dynamic> json) {
-    _code = json['code'];
-    _message = json['message'];
-    if (json['data'] != null) {
-      _data = <Customer>[];
-      json['data'].forEach((v) {
-        _data.add(Customer.fromJson(v));
-      });
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['code'] = this.code;
+    data['message'] = this.message;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
     }
+    return data;
   }
 }
 
@@ -29,15 +28,14 @@ class Customer {
   String? lastName;
   String? middleName;
   String? email;
-  String? username;
   String? phoneNumber;
+
   Customer(
       {this.id,
       this.firstName,
       this.lastName,
       this.middleName,
       this.email,
-      this.username,
       this.phoneNumber});
 
   Customer.fromJson(Map<String, dynamic> json) {
@@ -46,7 +44,6 @@ class Customer {
     lastName = json['lastName'];
     middleName = json['middleName'];
     email = json['email'];
-    username = json['username'];
     phoneNumber = json['phoneNumber'];
   }
 
@@ -57,7 +54,6 @@ class Customer {
     data['lastName'] = this.lastName;
     data['middleName'] = this.middleName;
     data['email'] = this.email;
-    data['username'] = this.username;
     data['phoneNumber'] = this.phoneNumber;
     return data;
   }

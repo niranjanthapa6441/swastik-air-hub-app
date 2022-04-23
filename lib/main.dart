@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khalti_flutter/khalti_flutter.dart';
-import 'package:swastik_air_hub/controller/booking_details_controller.dart';
-import 'package:swastik_air_hub/pages/detail_confirmation/detail_confirmation_page.dart';
-import 'package:swastik_air_hub/pages/homepage/main_home_page.dart';
-import 'package:swastik_air_hub/pages/homepage/navigation.dart';
-import 'package:swastik_air_hub/pages/search_flight_page/main_search_flight_page.dart';
-import 'package:swastik_air_hub/pages/show_payment_method/show_payment_method_page.dart';
+import 'package:swastik_air_hub/controller/passenger_ticket_controller.dart';
 import 'package:swastik_air_hub/pages/sign_in_page/sign_in.dart';
-import 'package:swastik_air_hub/pages/sign_up_page/sign_up.dart';
-import 'package:swastik_air_hub/pages/trip_summary/trip_summary_page.dart';
 import 'package:swastik_air_hub/route_helper/route_helper.dart';
 import 'package:swastik_air_hub/utils/helper/dependencies.dart' as dep;
 

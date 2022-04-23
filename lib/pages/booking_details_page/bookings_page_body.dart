@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:swastik_air_hub/controller/booking_details_controller.dart';
 import 'package:swastik_air_hub/model/booking.dart';
 import 'package:swastik_air_hub/route_helper/route_helper.dart';
+import 'package:swastik_air_hub/utils/app_constants/app_constants.dart';
 
 import '../../model/booking_details.dart';
 import '../../utils/Color/colors.dart';
@@ -25,11 +26,7 @@ class _BookingDetailsBodyState extends State<BookingsBody> {
 
   @override
   Widget build(BuildContext context) {
-    print("current screen height" +
-        MediaQuery.of(context).size.height.toString());
-    print("width" + MediaQuery.of(context).size.width.toString());
     Get.find<CustomerBookingDetailController>().getCustomerBookingDetails();
-
     return Column(
       children: [
         GetBuilder<CustomerBookingDetailController>(

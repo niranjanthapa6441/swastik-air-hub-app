@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:swastik_air_hub/model/booking.dart';
 import 'package:swastik_air_hub/model/bookingRequest.dart';
+import 'package:swastik_air_hub/model/booking_details.dart';
 import 'package:swastik_air_hub/repositories/booking_details_repo.dart';
 import 'package:swastik_air_hub/utils/app_constants/app_constants.dart';
 
@@ -32,9 +33,10 @@ class CustomerBookingDetailController extends GetxController {
       _customerBookingDetails.addAll(
           CustomerBookingDetailResponse.fromJson(response.body)
               .customerBookingDetails);
+
       _customerBookingDetails.forEach((element) {
-        Booking booking = element;
-        print('list' + booking.passengerList.toString());
+        Booking data = element;
+        print("date" + data.totalTicketPrice.toString());
       });
       update();
     } else {

@@ -9,7 +9,7 @@ import 'package:swastik_air_hub/pages/profilepage/main_profile_page.dart';
 import 'package:swastik_air_hub/pages/profilepage/updateProfilePage.dart';
 import 'package:swastik_air_hub/pages/search_flight_page/main_search_flight_page.dart';
 import 'package:swastik_air_hub/pages/show_available_flights_and_tickets.dart/show_available_flights_and_tickets_page.dart';
-import 'package:swastik_air_hub/pages/show_payment_method/show_payment_method_page.dart';
+import 'package:swastik_air_hub/pages/show_available_payment_methods/show_available_payment_methods.dart';
 import 'package:swastik_air_hub/pages/sign_in_page/sign_in.dart';
 import 'package:swastik_air_hub/pages/sign_up_page/sign_up.dart';
 import 'package:swastik_air_hub/pages/trip_summary/trip_summary_page.dart';
@@ -18,6 +18,7 @@ import 'package:swastik_air_hub/pages/view_booking_detail/main_booking_detail.da
 import '../pages/Registration/main_registration_page.dart';
 import '../pages/billing_info_page/billing_info_page.dart';
 import '../pages/flight_ticket_detail_page/flight_ticket_detail_page.dart';
+import '../pages/payment_method/khalti_payment_method_page.dart';
 
 class RouteHelper {
   static const String initial = '/';
@@ -42,6 +43,7 @@ class RouteHelper {
   static const String detailConfirmation = '/detailConfirmation';
   static const String viewFlightTicketDetail = '/flightticketdetail';
   static const String updateProfile = '/updateProfile';
+  static const String khaltiPayment = '/khaltiPayment';
 
   static String getInitial() => '$initial';
   static String getNavigation() => '$navigation';
@@ -67,6 +69,7 @@ class RouteHelper {
   static String getDetailConfitrmationPage() => '$detailConfirmation';
   static String getUpdTeProfile() => '$updateProfile';
   static String getPaymentInfo() => '$viewPaymentInfo';
+  static String getKhaltiPayment() => '$khaltiPayment';
 
   static List<GetPage> routes = [
     GetPage(name: homepage, page: () => Homepage()),
@@ -90,9 +93,10 @@ class RouteHelper {
         name: availableFlightsAndTickets,
         page: () => ShowAvailableFlightsAndTickets()),
     GetPage(name: confirmDetail, page: () => DetailConfirmationPage()),
+    GetPage(name: khaltiPayment, page: () => KhaltiPayment()),
     GetPage(
         name: availablePaymentMethods,
-        page: () => ShowAvailablePaymentMethods()),
+        page: () => ShowAvailablePaymentMethod()),
     GetPage(name: tripSummary, page: () => TripSummaryPage()),
     GetPage(name: signUp, page: () => SignUpPage()),
     GetPage(

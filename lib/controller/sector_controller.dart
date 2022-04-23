@@ -13,10 +13,8 @@ class SectorController extends GetxController {
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
   Future<void> getPopularProductList() async {
-    print("products+Aadsfasd");
     Response response = await sectorRepo.getSectorList();
     if (response.statusCode == 200) {
-      print("products");
       _isLoaded = true;
       _sectorList = [];
       SectorAPIResponse sectorResponse =
@@ -27,7 +25,6 @@ class SectorController extends GetxController {
           sectorCodes.add(sector.sectorCode.toString());
         }
       }
-      print(sectorCodes);
       update();
     } else {
       print(response.statusCode);
