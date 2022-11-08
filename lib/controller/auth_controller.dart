@@ -41,6 +41,7 @@ class AuthController extends GetxController implements GetxService {
       AppConstants.USER_ID = details.data!.customerId.toString();
     } else {
       responseModel = ResponseModel(false, response.body["message"]);
+      print(response.body["message"]);
     }
     update();
     return responseModel;

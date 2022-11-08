@@ -73,12 +73,13 @@ class _ShowAvailablePaymentMethodPageBodyState
             height: Dimensions.height20,
           ),
           ImageAndTextWidget(
-              imageURl: "assets/image/googleplay.png", text: "Pay Via esewa"),
+              imageURl: "assets/image/googleplay.png",
+              text: "Pay Via GooglePay"),
           SizedBox(
             height: Dimensions.height20,
           ),
           ImageAndTextWidget(
-              imageURl: "assets/image/paypal.png", text: "Pay Via esewa"),
+              imageURl: "assets/image/paypal.png", text: "Pay Via PayPal"),
           SizedBox(
             height: Dimensions.height20,
           ),
@@ -93,15 +94,7 @@ class _ShowAvailablePaymentMethodPageBodyState
     String customerId = AppConstants.USER_ID;
     int numberOfTraveller = AppConstants.NUMBER_OF_TRAVELLER;
     int totalTicketPrice = AppConstants.TotalTicketPrice;
-    List<PassengerRequest> passengerList = [];
-    for (int i = 0; i < AppConstants.NUMBER_OF_TRAVELLER; i++) {
-      PassengerRequest passengerRequest = PassengerRequest(
-          firstName: "First Name",
-          lastName: "Last Name",
-          middleName: "Middle Name",
-          phoneNumber: "9999999999");
-      passengerList.add(passengerRequest);
-    }
+    List<PassengerRequest> passengerList = AppConstants.passengerList();
     String status = "PURCHASED";
     BookingRequest request = BookingRequest(
         customerId: customerId,

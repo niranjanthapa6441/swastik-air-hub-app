@@ -279,10 +279,8 @@ class _ShowAvailableTicketsPageBodyState
   void _changeFilterValue(String newValue) {
     if (newValue == 'Low to High Price') {
       filterValue = false;
-      print(filterValue);
     } else if (newValue == 'High to Low Price') {
       filterValue = true;
-      print(filterValue);
     }
   }
 

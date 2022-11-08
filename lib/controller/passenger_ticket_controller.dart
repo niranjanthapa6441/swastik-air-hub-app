@@ -27,7 +27,6 @@ class PassengerTicketController extends GetxController {
 
       _passengerTicketDetails.forEach((element) {
         PassengerTicket data = element;
-        print("datedsfsdfsd" + data.arrival.toString());
       });
       update();
     } else {

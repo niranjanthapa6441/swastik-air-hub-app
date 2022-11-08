@@ -30,12 +30,12 @@ class BookingDetailPageBody extends StatelessWidget {
               margin: EdgeInsets.only(
                   left: Dimensions.width20,
                   right: Dimensions.width20,
-                  top: Dimensions.height30),
+                  top: Dimensions.height10),
               width: Dimensions.width30 * 15,
               child: BigText(text: "Detail"),
             ),
             Container(
-              height: Dimensions.height35 * 16,
+              height: Dimensions.height35 * 11,
               margin: EdgeInsets.only(
                   left: Dimensions.width20,
                   right: Dimensions.width20,
@@ -102,44 +102,6 @@ class BookingDetailPageBody extends StatelessWidget {
                       height: Dimensions.height20,
                     ),
                     BigText(
-                      text: "Departure : " +
-                          booking.flightTicket!.detail!.sector!.from!
-                              .toString(),
-                      color: Color.fromARGB(169, 42, 42, 43),
-                      size: 18,
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20,
-                    ),
-                    BigText(
-                      text: "Arrival : " +
-                          booking.flightTicket!.detail!.sector!.to!.toString(),
-                      color: Color.fromARGB(169, 42, 42, 43),
-                      size: 18,
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20,
-                    ),
-                    BigText(
-                      text: "Sector : " +
-                          booking.flightTicket!.detail!.sector!.sectorCode!
-                              .toString(),
-                      color: Color.fromARGB(169, 42, 42, 43),
-                      size: 18,
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20,
-                    ),
-                    BigText(
-                      text: "Ticket Price : " +
-                          booking.flightTicket!.ticket!.price!.toString(),
-                      color: Color.fromARGB(169, 42, 42, 43),
-                      size: 18,
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20,
-                    ),
-                    BigText(
                       text: "Number Of Traveller " +
                           booking.numberOfTraveller.toString(),
                       color: Color.fromARGB(169, 42, 42, 43),
@@ -149,7 +111,7 @@ class BookingDetailPageBody extends StatelessWidget {
                       height: Dimensions.height20,
                     ),
                     BigText(
-                      text: "Total Ticket Price : " +
+                      text: "Total Paid Amount : " +
                           booking.totalTicketPrice.toString(),
                       color: Color.fromARGB(169, 42, 42, 43),
                       size: 18,
@@ -198,7 +160,7 @@ class BookingDetailPageBody extends StatelessWidget {
 
   Widget _buildRecommendedItemPage(int index, PassengerTicket passenger) {
     return Container(
-      height: Dimensions.height10 * 33,
+      height: Dimensions.height10 * 37,
       margin: EdgeInsets.only(
           left: Dimensions.width20,
           right: Dimensions.width20,
@@ -268,6 +230,14 @@ class BookingDetailPageBody extends StatelessWidget {
             ),
             BigText(
               text: "Flight Code: " + passenger.flightCode.toString(),
+              color: Color.fromARGB(169, 42, 42, 43),
+              size: 18,
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            BigText(
+              text: "Ticket Price: " + passenger.ticketPrice.toString(),
               color: Color.fromARGB(169, 42, 42, 43),
               size: 18,
             ),

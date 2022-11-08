@@ -27,13 +27,4 @@ class AuthRepo {
     apiClient.updateHeader(token);
     print(token.toString() + "token");
   }
-//toDO
-  // Future<Void> save async(LoginBody body) {
-  //   try{
-
-  //   }
-  //   catch(e){
-
-  //   }
-  // }
 }

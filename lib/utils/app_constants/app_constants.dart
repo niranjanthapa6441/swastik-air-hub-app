@@ -1,9 +1,14 @@
+import '../../model/bookingRequest.dart';
+import '../../pages/detail_confirmation/passenger_contact_form_widget.dart';
+
 class AppConstants {
   static const String APP_NAME = "Swastik Air Hub";
-  static const String BASE_URL = "http://192.168.1.118:8083/swastikairhub/";
-  static const String BUDDHA_BASE_URL = "http://192.168.1.118:8081/buddhaair/";
+  static const String BASE_URL =
+      "https://swastikair.herokuapp.com/swastikairhub/";
+  static const String BUDDHA_BASE_URL =
+      "https://buddhairllinesreplica.herokuapp.com/buddhaair/";
   static const String NEPAL_AIRLINES_BASE_URL =
-      "http://192.168.1.118:8082/nepalairlines/";
+      "https://nepalairreplica.herokuapp.com/nepalairlines/";
   // static const String BUDDHA_BASE_URL = "http://100.64.218.31:8081/buddhaair/";
   // static const String NEPAL_AIRLINES_BASE_URL =
   //     "http://100.64.218.31:8082/nepalairlines/";
@@ -43,4 +48,13 @@ class AppConstants {
   static int paidAmount = 0;
 
   static const String SAVE_BOOKING_DETAIL_URI = API_VERSION + "booking";
+  static List<PassengerRequest> passengers = [];
+  static addPassengers(PassengerRequest passengerRequest) {
+    passengers.add(passengerRequest);
+    print("PassengerListLength" + passengers.length.toString());
+  }
+
+  static List<PassengerRequest> passengerList() {
+    return passengers;
+  }
 }

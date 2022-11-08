@@ -68,6 +68,9 @@ class FlightController extends GetxController implements GetxService {
       _nepalAirlinesFLightResponse.forEach((element) {
         SearchFlightModel model = element;
       });
+      print(buddhasearchFLightAPIResponse.availableFlightDetail.length
+              .toString() +
+          "Budhha air tickets");
       _availableFlightsLowToHigh
           .addAll(buddhasearchFLightAPIResponse.availableFlightDetail);
       _availableFlightsLowToHigh

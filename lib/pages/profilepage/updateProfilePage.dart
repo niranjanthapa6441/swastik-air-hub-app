@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:swastik_air_hub/controller/customer_controller.dart';
 import 'package:swastik_air_hub/utils/Color/colors.dart';
 import 'package:swastik_air_hub/utils/dimesions/dimesions.dart';
 import 'package:swastik_air_hub/widgets/app_text_field.dart';
 import 'package:swastik_air_hub/widgets/big_text.dart';
 
 import '../../base/show_custom_snack_bar.dart';
+import '../../model/update_profile_request.dart';
 import '../../route_helper/route_helper.dart';
 
 class UpdateProfilePage extends StatefulWidget {
@@ -137,7 +139,27 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
     } else if (phoneNumber.length < 10 || phoneNumber.length > 10) {
       showCustomSnackBar("Phone Number Should be 10", title: "PhoneNumber");
     } else {
-      Get.back();
+      UpdateProfileRequest newUser = UpdateProfileRequest(
+          firstName: firstName,
+          lastName: lastName,
+          middleName: middleName,
+          email: email,
+          phoneNumber: phoneNumber);
+      var customerController = Get.find<CustomerDetailController>();
+      customerController.updateProfile(newUser).then((status) {
+        print(status.isSucces);
+        if (status.isSucces) {
+          Get.back();
+          Get.find<CustomerDetailController>().getCustomerDetails();
+          showCustomSnackBar("The details have been updated",
+              title: "Profile Update");
+        } else {
+          if (status.message.toLowerCase() == "bad request") {
+            showCustomSnackBar('Password must contain characters',
+                title: "Registration", color: Colors.green);
+          }
+        }
+      });
     }
   }
 }

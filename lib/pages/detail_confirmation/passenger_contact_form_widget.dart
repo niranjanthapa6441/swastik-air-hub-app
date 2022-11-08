@@ -7,7 +7,6 @@ import '../../utils/dimesions/dimesions.dart';
 
 class ContactFormWidget extends StatefulWidget {
   ContactFormWidget({Key? key, this.passenger, this.index}) : super(key: key);
-
   final int? index;
   PassengerRequest? passenger;
   final state = _ContactFormWidgetState();
@@ -55,6 +54,20 @@ class _ContactFormWidgetState extends State<ContactFormWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
+                margin: EdgeInsets.only(
+                    top: Dimensions.height10,
+                    left: Dimensions.width10,
+                    right: Dimensions.width10,
+                    bottom: Dimensions.width10),
+                child: Text(
+                  "Passenger - ${widget.index! + 1}",
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: const Color.fromARGB(169, 46, 38, 196)),
+                ),
+              ),
+              Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -62,6 +75,9 @@ class _ContactFormWidgetState extends State<ContactFormWidget> {
                       width: Dimensions.width30 * 6,
                       child: TextFormField(
                         controller: widget._firstNameController,
+                        onChanged: (value) =>
+                            widget.passenger!.firstName = value,
+                        onSaved: (value) => widget.passenger!.firstName = value,
                         decoration: const InputDecoration(
                           labelText: 'First Name',
                         ),
@@ -71,6 +87,10 @@ class _ContactFormWidgetState extends State<ContactFormWidget> {
                       width: Dimensions.width30 * 6,
                       child: TextFormField(
                         controller: widget._middleNameController,
+                        onChanged: (value) =>
+                            widget.passenger!.middleName = value,
+                        onSaved: (value) =>
+                            widget.passenger!.middleName = value,
                         decoration: const InputDecoration(
                           labelText: 'Middle Name',
                         ),
@@ -90,6 +110,9 @@ class _ContactFormWidgetState extends State<ContactFormWidget> {
                       width: Dimensions.width30 * 6,
                       child: TextFormField(
                         controller: widget._lastNameController,
+                        onChanged: (value) =>
+                            widget.passenger!.lastName = value,
+                        onSaved: (value) => widget.passenger!.lastName = value,
                         decoration: const InputDecoration(
                           labelText: 'Last Name',
                         ),
@@ -99,25 +122,10 @@ class _ContactFormWidgetState extends State<ContactFormWidget> {
                       width: Dimensions.width30 * 6,
                       child: TextFormField(
                         controller: widget._emailController,
-                        decoration: const InputDecoration(
-                          labelText: 'Email',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: Dimensions.height20,
-              ),
-              Container(
-                margin: EdgeInsets.only(left: Dimensions.width10),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: Dimensions.width30 * 8,
-                      child: TextFormField(
-                        controller: widget._contactController,
+                        onChanged: (value) =>
+                            widget.passenger!.phoneNumber = value,
+                        onSaved: (value) =>
+                            widget.passenger!.phoneNumber = value,
                         decoration: const InputDecoration(
                           labelText: 'Phone Number',
                         ),

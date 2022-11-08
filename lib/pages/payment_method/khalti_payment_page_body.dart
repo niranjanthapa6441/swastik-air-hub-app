@@ -138,12 +138,31 @@ class _ShowAvailablePaymentPageBodyState extends State<KhaltiPaymentPageBody> {
     bookingController.saveBookingDetails(request).then((status) {
       print(status.isSucces);
       if (status.isSucces) {
-        showCustomSnackBar(totalTicketPrice.toString(),
-            title: "Booking Detail");
+        customSnackBar(totalTicketPrice.toString(), title: "Booking Detail");
         Get.toNamed(RouteHelper.getNavigation());
       } else {
         showCustomSnackBar(status.message, title: "Booking Detail");
       }
     });
+  }
+
+  void customSnackBar(String message,
+      {bool isError = true,
+      String title = "Error",
+      Color color = Colors.green}) {
+    Get.snackbar(title, message,
+        titleText: BigText(
+          text: title,
+          color: Colors.white,
+        ),
+        messageText: Text(
+          message,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        colorText: Colors.white,
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: color);
   }
 }

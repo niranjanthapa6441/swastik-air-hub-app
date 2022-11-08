@@ -215,7 +215,7 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
         print(status.isSucces);
         if (status.isSucces) {
           Get.toNamed(RouteHelper.signIn);
-          showCustomSnackBar(
+          customSnackBar(
               "Registration Successful! Please Verify Your Email Before logging In",
               title: "Registration");
         } else {
@@ -226,5 +226,25 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
         }
       });
     }
+  }
+
+  customSnackBar(String message,
+      {bool isError = true,
+      String title = "Error",
+      Color color = Colors.green}) {
+    Get.snackbar(title, message,
+        titleText: BigText(
+          text: title,
+          color: Colors.white,
+        ),
+        messageText: Text(
+          message,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        colorText: Colors.white,
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: color);
   }
 }

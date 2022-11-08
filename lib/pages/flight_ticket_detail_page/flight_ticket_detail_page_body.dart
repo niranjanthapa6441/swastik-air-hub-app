@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:swastik_air_hub/controller/flight_controller.dart';
 import 'package:swastik_air_hub/model/search_flight_response.dart';
+import 'package:swastik_air_hub/pages/detail_confirmation/detail_confirmation_page.dart';
 import 'package:swastik_air_hub/utils/Color/colors.dart';
 import 'package:swastik_air_hub/utils/app_constants/app_constants.dart';
 import 'package:swastik_air_hub/widgets/big_text.dart';

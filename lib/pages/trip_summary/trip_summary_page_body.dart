@@ -158,12 +158,12 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
                           size: 18,
                         ),
                         BigText(
-                          text: "4",
+                          text: AppConstants.NUMBER_OF_TRAVELLER.toString(),
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),
                         BigText(
-                          text: "1700",
+                          text: AppConstants.TotalTicketPrice.toString(),
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),
@@ -181,12 +181,12 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
                           size: 18,
                         ),
                         BigText(
-                          text: "4",
+                          text: "0",
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),
                         BigText(
-                          text: "200",
+                          text: "0",
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),
@@ -204,12 +204,12 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
                           size: 18,
                         ),
                         BigText(
-                          text: "4",
+                          text: "0",
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),
                         BigText(
-                          text: "200",
+                          text: "0",
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),
@@ -227,12 +227,12 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
                           size: 18,
                         ),
                         BigText(
-                          text: "4",
+                          text: "0",
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),
                         BigText(
-                          text: "100",
+                          text: "0",
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),
@@ -250,12 +250,12 @@ class _TripSummaryPageBodyState extends State<TripSummaryPageBody> {
                           size: 18,
                         ),
                         BigText(
-                          text: "4",
+                          text: "0",
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),
                         BigText(
-                          text: "100",
+                          text: "0",
                           color: Color.fromARGB(169, 42, 42, 43),
                           size: 18,
                         ),

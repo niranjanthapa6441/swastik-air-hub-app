@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:swastik_air_hub/model/bookingRequest.dart';
 import 'package:swastik_air_hub/model/passenger.dart';
 import 'package:swastik_air_hub/pages/detail_confirmation/passenger_contact_form_widget.dart';
 import 'package:swastik_air_hub/route_helper/route_helper.dart';
@@ -36,8 +39,24 @@ class DetailConfirmationPageBody extends StatefulWidget {
 
 class _DetailConfirmationPageBodyState
     extends State<DetailConfirmationPageBody> {
+  List<ContactFormWidget> contactForms = List.empty(growable: true);
+  addToList() {
+    int count = AppConstants.NUMBER_OF_TRAVELLER;
+    for (int i = 0; i < count; i++) {
+      setState(() {
+        PassengerRequest _contactModel =
+            PassengerRequest(id: contactForms.length);
+        contactForms.add(ContactFormWidget(
+          index: contactForms.length,
+          passenger: _contactModel,
+        ));
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    addToList();
     return ListView(
       physics: AlwaysScrollableScrollPhysics(),
       children: [
@@ -49,177 +68,75 @@ class _DetailConfirmationPageBodyState
                 margin: EdgeInsets.only(
                     top: Dimensions.height10, left: Dimensions.width10),
                 child: BigText(
-                  text: "Contact Details",
-                  color: AppColors.mainBlackColor,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: Dimensions.height10,
-                    left: Dimensions.width10,
-                    right: Dimensions.width10),
-                width: Dimensions.width30 * 20,
-                height: Dimensions.height30 * 10,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.mainBlackColor, width: 2),
-                  borderRadius: BorderRadius.circular(Dimensions.radius25),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            width: Dimensions.width30 * 6,
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'First Name',
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: Dimensions.width30 * 6,
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'Middle Name',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20,
-                    ),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            width: Dimensions.width30 * 6,
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'Last Name',
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: Dimensions.width30 * 6,
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'Email',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: Dimensions.width10),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: Dimensions.width30 * 8,
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'Phone Number',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20,
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          Checkbox(
-                            value: widget._firstValue,
-                            onChanged: (value) {
-                              setState(() {
-                                print(value);
-                                widget._firstValue = value!;
-                              });
-                            },
-                            activeColor: Colors.blue,
-                          ),
-                          BigText(
-                            text: "I am a passenger in this flight",
-                            size: 16,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: Dimensions.height10, left: Dimensions.width10),
-                child: BigText(
                   text: "Passenger Details",
                   color: AppColors.mainBlackColor,
                 ),
               ),
               Container(
-                height: Dimensions.height10 * 35,
+                height: Dimensions.height10 * 65,
                 child: ListView.builder(
                   physics: AlwaysScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: AppConstants.NUMBER_OF_TRAVELLER,
+                  itemCount: contactForms.length,
                   itemBuilder: (context, index) {
-                    return ContactFormWidget(
-                      index: index,
-                    );
+                    return contactForms[index];
                   },
                 ),
               ),
             ],
           ),
         ),
-        Container(
-          child: Row(
-            children: [
-              Checkbox(
-                value: widget._secondValue,
-                onChanged: (value) {
-                  setState(() {
-                    print(value);
-                    widget._secondValue = value!;
-                  });
-                },
-                activeColor: Colors.blue,
+        SizedBox(
+          height: 20,
+        ),
+        GestureDetector(
+          onTap: () {
+            onSave();
+            Get.toNamed(RouteHelper.getTripSummarty());
+          },
+          child: Container(
+            margin: EdgeInsets.only(
+              left: Dimensions.width30 + Dimensions.width30,
+              right: Dimensions.width30 + Dimensions.width30,
+            ),
+            height: Dimensions.screenHeight / 13,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(Dimensions.radius30),
+              color: AppColors.purpleColor,
+            ),
+            child: Center(
+              child: BigText(
+                text: "Continue",
+                size: Dimensions.font30,
+                color: Colors.white,
               ),
-              BigText(
-                text: "I agree with terms and conditions.",
-                size: 14,
-              ),
-              SizedBox(
-                width: Dimensions.width15,
-              ),
-              GestureDetector(
-                onTap: (() {
-                  // _validatePassengerDetails();
-                  Get.toNamed(RouteHelper.getTripSummarty());
-                }),
-                child: BigText(
-                  text: "Continue",
-                  size: 20,
-                  color: AppColors.purpleColor,
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ],
     );
+  }
+
+  onSave() {
+    bool allValid = true;
+
+    //If any form validation function returns false means all forms are not valid
+    contactForms
+        .forEach((element) => allValid = (allValid && element.isValidated()));
+
+    if (allValid) {
+      for (int i = 0; i < contactForms.length; i++) {
+        ContactFormWidget item = contactForms[i];
+        PassengerRequest request = new PassengerRequest();
+        request.firstName = item.passenger!.firstName;
+        request.middleName = item.passenger!.middleName;
+        request.lastName = item.passenger!.lastName;
+        request.phoneNumber = item.passenger!.phoneNumber;
+        AppConstants.addPassengers(request);
+      }
+    } else {
+      debugPrint("Form is Not Valid");
+    }
   }
 
   void _validatePassengerDetails() {

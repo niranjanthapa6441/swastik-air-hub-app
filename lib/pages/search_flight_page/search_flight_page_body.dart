@@ -181,8 +181,7 @@ class _SearchFlightPageBodyState extends State<SearchFlightPageBody> {
           .then((status) {
         if (status.isSucces) {
           Get.toNamed(RouteHelper.getAvailableFlightsAndTickets());
-          showCustomSnackBar("Showing Available Flights",
-              title: "Search Flights");
+          CustomSnackBar("Showing Available Flights", title: "Search Flights");
         } else {
           showCustomSnackBar(status.message, title: "Search Flight");
         }
@@ -190,11 +189,31 @@ class _SearchFlightPageBodyState extends State<SearchFlightPageBody> {
     }
   }
 
+  CustomSnackBar(String message,
+      {bool isError = true,
+      String title = "Error",
+      Color color = Colors.green}) {
+    Get.snackbar(title, message,
+        titleText: BigText(
+          text: title,
+          color: Colors.white,
+        ),
+        messageText: Text(
+          message,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        colorText: Colors.white,
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: color);
+  }
+
   _getDateFromUser() async {
     DateTime? _pickerDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2022),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2025),
     );
     if (_pickerDate != null) {

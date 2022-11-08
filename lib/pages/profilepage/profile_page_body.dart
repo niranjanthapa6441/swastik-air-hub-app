@@ -18,7 +18,7 @@ class ProfilePageBody extends StatefulWidget {
 class _ProfilePageBodyState extends State<ProfilePageBody> {
   @override
   Widget build(BuildContext context) {
-    Get.find<CustomerDetailController>().getCustomerPaymentDetails();
+    Get.find<CustomerDetailController>().getCustomerDetails();
     return GetBuilder<CustomerDetailController>(builder: (context) {
       return Container(
         child: Column(
