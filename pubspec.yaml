@@ -38,6 +38,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.1
   shared_preferences: ^2.0.13
+  snippet_coder_utils: ^1.0.12
+  khalti_flutter: ^2.0.0
+  date_format: ^2.0.5
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -62,19 +66,19 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - assets/image/
-  # fonts:
-  #   - family: Roboto
-  #     fonts:
-  #       - asset: assets/font/Roboto-Regular.ttf
-  #         weight: 400
-  #       - asset: assets/font/Roboto-Medium.ttf
-  #         weight: 500
-  #       - asset: assets/font/Roboto-Bold.ttf
-  #         weight: 700
-  #       - asset: assets/font/Roboto-Black.ttf
-  #         weight: 900
+  assets:
+    - assets/image/
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/font/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/font/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/font/Roboto-Bold.ttf
+          weight: 700
+        - asset: assets/font/Roboto-Black.ttf
+          weight: 900
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

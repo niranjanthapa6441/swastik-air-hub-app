@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swastik_air_hub/model/LoginBody.dart';
@@ -20,7 +22,7 @@ class AuthRepo {
         AppConstants.SIGN_IN_URI, loginBody.toJson());
   }
 
-  saveUserToken(String token) async {
+  Future<void> saveUserToken(String token) async {
     apiClient.token = token;
     apiClient.updateHeader(token);
     print(token.toString() + "token");

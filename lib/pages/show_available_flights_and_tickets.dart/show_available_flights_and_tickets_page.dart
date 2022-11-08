@@ -18,11 +18,7 @@ class _ShowAvailableFlightsAndTicketsState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-            onTap: () {
-              Get.toNamed(RouteHelper.getSearchFlight());
-            },
-            child: Icon(Icons.arrow_back)),
+        automaticallyImplyLeading: false,
         title: const Text('Available Flights'),
         backgroundColor: Color.fromARGB(169, 46, 38, 196),
       ),

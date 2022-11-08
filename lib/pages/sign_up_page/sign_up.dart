@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:swastik_air_hub/pages/sign_up_page/sign_up_page_body.dart';
 
@@ -9,6 +11,17 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUpPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(

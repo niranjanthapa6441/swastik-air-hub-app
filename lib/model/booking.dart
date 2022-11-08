@@ -1,7 +1,10 @@
+import 'package:swastik_air_hub/model/passenger.dart';
+
 class CustomerBookingDetailResponse {
   String? _code;
   String? _message;
   late List<Booking> _data;
+
   List<Booking> get customerBookingDetails => _data;
 
   CustomerBookingDetailResponse(
@@ -41,7 +44,7 @@ class Booking {
   int? numberOfTraveller;
   int? totalTicketPrice;
   String? status;
-
+  List<Passenger>? passengerList;
   Booking(
       {this.id,
       this.flightTicket,
@@ -50,7 +53,8 @@ class Booking {
       this.bookingTime,
       this.numberOfTraveller,
       this.totalTicketPrice,
-      this.status});
+      this.status,
+      this.passengerList});
 
   Booking.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -65,6 +69,12 @@ class Booking {
     numberOfTraveller = json['numberOfTraveller'];
     totalTicketPrice = json['totalTicketPrice'];
     status = json['status'];
+    if (json['passengerList'] != null) {
+      passengerList = <Passenger>[];
+      json['passengerList'].forEach((v) {
+        passengerList!.add(new Passenger.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {

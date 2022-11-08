@@ -1,4 +1,5 @@
 import 'booking.dart';
+import 'booking_details.dart';
 
 class Passenger {
   String? id;

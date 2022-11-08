@@ -11,14 +11,16 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.arrow_back),
-        title: const Text('Profile'),
-        backgroundColor: Color.fromARGB(169, 46, 38, 196),
+  Widget build(BuildContext context) => WillPopScope(
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('Profile'),
+          backgroundColor: Color.fromARGB(169, 46, 38, 196),
+        ),
+        body: ProfilePageBody(),
       ),
-      body: ProfilePageBody(),
-    );
-  }
+      onWillPop: () async {
+        return false;
+      });
 }

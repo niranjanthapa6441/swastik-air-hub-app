@@ -70,16 +70,20 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
               height: Dimensions.height20,
             ),
             AppTextField(
-                textEditingController: passwordController,
-                hintText: "Password",
-                icon: Icons.password),
+              textEditingController: passwordController,
+              hintText: "Password",
+              icon: Icons.password,
+              isObscure: true,
+            ),
             SizedBox(
               height: Dimensions.height20,
             ),
             AppTextField(
-                textEditingController: confirmPasswordController,
-                hintText: "Confirm Password",
-                icon: Icons.password),
+              textEditingController: confirmPasswordController,
+              hintText: "Confirm Password",
+              icon: Icons.password,
+              isObscure: true,
+            ),
             SizedBox(
               height: Dimensions.height20,
             ),
@@ -211,16 +215,36 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
         print(status.isSucces);
         if (status.isSucces) {
           Get.toNamed(RouteHelper.signIn);
-          showCustomSnackBar(
+          customSnackBar(
               "Registration Successful! Please Verify Your Email Before logging In",
               title: "Registration");
-        }
-        else {
-          showCustomSnackBar(
-              status.message,
-              title: "Registration");
+        } else {
+          if (status.message.toLowerCase() == "bad request") {
+            showCustomSnackBar('Password must contain characters',
+                title: "Registration");
+          }
         }
       });
     }
+  }
+
+  customSnackBar(String message,
+      {bool isError = true,
+      String title = "Error",
+      Color color = Colors.green}) {
+    Get.snackbar(title, message,
+        titleText: BigText(
+          text: title,
+          color: Colors.white,
+        ),
+        messageText: Text(
+          message,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        colorText: Colors.white,
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: color);
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:swastik_air_hub/pages/billing_info_page/billing_info_page.dart';
+import 'package:swastik_air_hub/pages/booking_details_page/main_bookings_page.dart';
 import 'package:swastik_air_hub/pages/homepage/main_home_page.dart';
 import 'package:swastik_air_hub/pages/profilepage/main_profile_page.dart';
 
@@ -16,6 +18,8 @@ class _NavigationState extends State<Navigation> {
   List pages = [
     Homepage(),
     SeacrhFlightPage(),
+    Bookings(),
+    BillingInfoPage(),
     ProfilePage(),
   ];
   void _onItemTapped(int index) {
@@ -33,21 +37,35 @@ class _NavigationState extends State<Navigation> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              size: 35,
+              size: 30,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.search,
-              size: 35,
+              size: 30,
             ),
             label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(
+              Icons.book,
+              size: 30,
+            ),
+            label: 'Bookings',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.payment,
+              size: 30,
+            ),
+            label: 'Billings',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.person,
-              size: 35,
+              size: 30,
             ),
             label: 'Profile',
           ),

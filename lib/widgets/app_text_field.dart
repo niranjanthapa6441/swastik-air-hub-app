@@ -7,11 +7,17 @@ class AppTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String hintText;
   final IconData icon;
-  const AppTextField(
+  bool isObscure;
+  final bool readOnly;
+  Widget? widget;
+  AppTextField(
       {Key? key,
       required this.textEditingController,
       required this.hintText,
-      required this.icon})
+      required this.icon,
+      this.isObscure = false,
+      this.readOnly = false,
+      this.widget = null})
       : super(key: key);
 
   @override
@@ -29,26 +35,41 @@ class AppTextField extends StatelessWidget {
                 offset: Offset(1, 8),
                 color: Colors.grey.withOpacity(0.2))
           ]),
-      child: TextField(
-        controller: textEditingController,
-        decoration: InputDecoration(
-          hintText: hintText,
-          prefixIcon: Icon(
-            icon,
-            color: AppColors.purpleColor,
+      child: Row(
+        children: [
+          widget == null
+              ? Container()
+              : Container(
+                  child: widget,
+                ),
+          Expanded(
+            child: TextFormField(
+              readOnly: readOnly,
+              obscureText: isObscure ? true : false,
+              controller: textEditingController,
+              decoration: InputDecoration(
+                hintText: hintText,
+                prefixIcon: widget == null
+                    ? Icon(
+                        icon,
+                        color: AppColors.purpleColor,
+                      )
+                    : null,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(Dimensions.radius30),
+                  borderSide: BorderSide(width: 1.0, color: Colors.white),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(Dimensions.radius30),
+                  borderSide: BorderSide(width: 1.0, color: Colors.white),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(Dimensions.radius30),
+                ),
+              ),
+            ),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radius30),
-            borderSide: BorderSide(width: 1.0, color: Colors.white),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radius30),
-            borderSide: BorderSide(width: 1.0, color: Colors.white),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radius30),
-          ),
-        ),
+        ],
       ),
     );
   }
